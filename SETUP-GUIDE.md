@@ -315,12 +315,12 @@ brew install --cask raycast
 
 | Shortcut | Action |
 |----------|--------|
-| `Ctrl + Option + Cmd + ←` | Left Half |
-| `Ctrl + Option + Cmd + →` | Right Half |
-| `Ctrl + Option + Cmd + 1` | Top Left Quarter |
-| `Ctrl + Option + Cmd + 2` | Top Right Quarter |
-| `Ctrl + Option + Cmd + 3` | Bottom Left Quarter |
-| `Ctrl + Option + Cmd + 4` | Bottom Right Quarter |
+| `Ctrl + Option + ←` | Left Half |
+| `Ctrl + Option + →` | Right Half |
+| `Ctrl + Option + 1` | Top Left Quarter |
+| `Ctrl + Option + 2` | Top Right Quarter |
+| `Ctrl + Option + 3` | Bottom Left Quarter |
+| `Ctrl + Option + 4` | Bottom Right Quarter |
 
 ---
 
@@ -550,3 +550,19 @@ brew install --cask \
 - **No Apple lock-in:** Avoided iCloud, Apple Notes, etc.
 - **Homebrew for everything:** Makes reinstalls and updates easy (`brew upgrade`)
 - **LocalWP uses its own PHP:** The system PHP from Homebrew is separate
+
+---
+
+## Troubleshooting
+
+### External Keyboard Issues
+
+Non-Apple keyboards (especially wireless ones with USB receivers) may have quirks:
+
+**Swapped Command/Option keys:** Common on Windows-layout keyboards. Fix in System Settings → Keyboard → Keyboard Shortcuts → Modifier Keys. Select your external keyboard and swap Option ↔ Command.
+
+**Modifier + arrow key combos not working:** Some keyboards have "ghosting" limitations where certain multi-key combinations can't be detected simultaneously due to how the key matrix is wired. For example, Ctrl+Option+Command+Left might not register while Ctrl+Option+Command+Right works fine. This is a hardware limitation — the fix is to use different shortcuts.
+
+**Different scroll direction for mouse vs trackpad:** macOS doesn't separate this natively. Install `brew install --cask scroll-reverser` or `brew install --cask linearmouse` to set per-device scroll direction.
+
+**Diagnosing key issues:** Install Karabiner-Elements (`brew install --cask karabiner-elements`) temporarily and use its EventViewer app to see exactly what keycodes your keyboard sends.
