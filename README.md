@@ -1,0 +1,29 @@
+# macOS Setup
+
+My MacBook Air (Apple Silicon) configuration — optimized for productivity, terminal workflows, and web development.
+
+## What's Inside
+
+- **[SETUP-GUIDE.md](SETUP-GUIDE.md)** — Complete setup guide with all commands and configs
+
+## Quick Start
+
+```bash
+# Install Homebrew first
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# Then run the install script from SETUP-GUIDE.md
+```
+
+## Stack
+
+| Category | Tools |
+|----------|-------|
+| Terminal | Kitty + Fira Code + Starship |
+| Shell | zsh + syntax-highlighting + autosuggestions + fzf |
+| Editors | VS Code, Google Antigravity |
+| Launcher | Raycast |
+| WordPress | LocalWP, WP-CLI, Composer |
+| Utilities | Stats, HiddenBar, btop, ImageOptim |
+
+See the full setup guide for details.
