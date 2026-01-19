@@ -5,6 +5,7 @@ macOS configuration for productivity, terminal workflows, and web development �
 ## What's Inside
 
 - **[SETUP-GUIDE.md](SETUP-GUIDE.md)** — Complete setup guide with all commands and configs
+- **[raycast-settings.rayconfig](raycast-settings.rayconfig)** — Raycast settings export (double-click to import)
 
 ## Quick Start
 

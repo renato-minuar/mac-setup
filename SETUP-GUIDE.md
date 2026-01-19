@@ -80,6 +80,9 @@ visual_bell_duration 0
 
 # Selection
 copy_on_select clipboard
+
+# Clipboard (allow read/write for image paste support)
+clipboard_control write-clipboard write-primary read-clipboard read-primary
 ```
 
 ---
@@ -155,6 +158,11 @@ source <(fzf --zsh)
 
 # Starship prompt
 eval "$(starship init zsh)"
+
+# Bun (if installed)
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
 ```
 
 **fzf shortcuts:**
@@ -202,6 +210,13 @@ Required for most build tools and npm packages.
 brew install node
 ```
 
+### Bun
+Fast JavaScript runtime and package manager (alternative to Node/npm).
+
+```bash
+curl -fsSL https://bun.sh/install | bash
+```
+
 ### jq
 JSON processor for CLI (useful for API work).
 
@@ -216,6 +231,13 @@ Container platform for development environments.
 brew install --cask docker
 ```
 (Requires password prompt)
+
+### Ollama
+Run LLMs locally.
+
+```bash
+brew install ollama
+```
 
 ---
 
@@ -283,6 +305,8 @@ brew install --cask raycast
 3. Set Raycast hotkey to Cmd+Space
 
 **Window management:** Type "left half", "right half", "maximize", etc.
+
+**Import settings:** Double-click the `.rayconfig` file in this repo to restore all settings and shortcuts.
 
 **Recommended extensions (install from Raycast Store):**
 - **Brew** — search and install Homebrew packages from Raycast
@@ -490,7 +514,7 @@ Run everything at once (apps that need sudo will fail silently):
 
 ```bash
 # Core tools
-brew install zsh-syntax-highlighting zsh-autosuggestions fzf starship gh wp-cli composer node jq btop
+brew install zsh-syntax-highlighting zsh-autosuggestions fzf starship gh wp-cli composer node jq btop ollama
 
 # Apps
 brew install --cask \
