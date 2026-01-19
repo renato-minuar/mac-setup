@@ -1,6 +1,6 @@
 # macOS Setup
 
-My MacBook Air (Apple Silicon) configuration — optimized for productivity, terminal workflows, and web development.
+macOS configuration for productivity, terminal workflows, and web development — without Apple's ecosystem lock-in.
 
 ## What's Inside
 

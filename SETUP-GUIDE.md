@@ -1,6 +1,6 @@
 # macOS Setup Guide
 
-Complete setup guide for a MacBook Air (Apple Silicon) — optimized for productivity, terminal workflows, and web development.
+macOS setup for productivity, terminal workflows, and web development — no iCloud, no Apple Notes, no ecosystem lock-in.
 
 ## Prerequisites
 
