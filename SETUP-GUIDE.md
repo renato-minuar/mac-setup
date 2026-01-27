@@ -324,7 +324,20 @@ brew install --cask raycast
 
 ---
 
-## 9. Communication
+## 9. Window Switcher
+
+### AltTab
+Windows/Ubuntu-style Alt+Tab that switches between individual windows instead of apps.
+
+```bash
+brew install --cask alt-tab
+```
+
+Grant Accessibility permissions on first launch: System Settings → Privacy & Security → Accessibility.
+
+---
+
+## 10. Communication
 
 ```bash
 brew install --cask slack discord telegram
@@ -339,7 +352,7 @@ brew install --cask google-chat
 
 ---
 
-## 10. File Transfer
+## 11. File Transfer
 
 ### Cyberduck
 SFTP/FTP client.
@@ -358,7 +371,7 @@ brew install --cask google-drive
 
 ---
 
-## 11. Utilities
+## 12. Utilities
 
 ### btop
 Better process monitor.
@@ -394,7 +407,7 @@ brew install --cask stats
 
 ---
 
-## 12. Media
+## 13. Media
 
 ```bash
 brew install --cask spotify vlc
@@ -402,7 +415,7 @@ brew install --cask spotify vlc
 
 ---
 
-## 13. SSH Keys
+## 14. SSH Keys
 
 If migrating from another machine, copy:
 - `~/.ssh/` (keys, config, known_hosts)
@@ -417,7 +430,7 @@ chmod 644 ~/.ssh/*.pub
 
 ---
 
-## 14. macOS Settings
+## 15. macOS Settings
 
 ### Finder
 
@@ -536,7 +549,8 @@ brew install --cask \
   hiddenbar \
   stats \
   vlc \
-  google-chat
+  google-chat \
+  alt-tab
 
 # These need password prompts - run separately:
 # brew install --cask docker google-drive
