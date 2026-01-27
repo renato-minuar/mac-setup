@@ -10,6 +10,7 @@ Reference for my Mac configuration. Full setup guide in `SETUP-GUIDE.md`.
 | Terminal | Kitty + Fira Code |
 | Shell | zsh + syntax-highlighting + autosuggestions + fzf + Starship |
 | Editors | Google Antigravity, VS Code |
+| Notes | Obsidian |
 | Launcher | Raycast (Cmd+Space) |
 | Browsers | Chrome (default), Firefox |
 | WordPress | LocalWP, WP-CLI, Composer |

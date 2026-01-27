@@ -260,6 +260,13 @@ brew install --cask antigravity
 
 CLI command: `agy`
 
+### Obsidian
+Markdown-based note-taking and knowledge base.
+
+```bash
+brew install --cask obsidian
+```
+
 ---
 
 ## 6. WordPress Development
@@ -550,7 +557,8 @@ brew install --cask \
   stats \
   vlc \
   google-chat \
-  alt-tab
+  alt-tab \
+  obsidian
 
 # These need password prompts - run separately:
 # brew install --cask docker google-drive
