@@ -25,6 +25,7 @@ macOS configuration for productivity, terminal workflows, and web development â€
 | Editors | VS Code, Google Antigravity |
 | Launcher | Raycast |
 | WordPress | LocalWP, WP-CLI, Composer |
+| Containers | Docker Desktop |
 | Utilities | Stats, HiddenBar, btop, ImageOptim |
 
 See the full setup guide for details.

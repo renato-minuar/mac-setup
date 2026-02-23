@@ -17,7 +17,7 @@ Reference for my Mac configuration. Full setup guide in `SETUP-GUIDE.md`.
 | JavaScript | Node.js, Bun |
 | AI/LLM | Ollama |
 | Database | Beekeeper Studio |
-| Containers | Docker |
+| Containers | Docker Desktop |
 | FTP/SFTP | Cyberduck |
 | Communication | Slack, Discord, Telegram, Google Chat |
 | File sync | Google Drive |
