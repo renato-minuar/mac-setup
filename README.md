@@ -29,7 +29,6 @@ Then follow the [Quick Install](SETUP-GUIDE.md#quick-install) section in the set
 | JavaScript | Node.js, Bun |
 | Containers | Docker Desktop |
 | Database | Beekeeper Studio |
-| AI/LLM | Ollama |
 | File sync | Google Drive |
 | Communication | Slack, Discord, Telegram, Google Chat |
 | Window switcher | AltTab |

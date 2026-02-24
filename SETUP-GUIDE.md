@@ -266,12 +266,6 @@ Includes CLI tools (`docker`, `docker compose`).
 brew install --cask docker-desktop
 ```
 
-### Ollama
-
-```bash
-brew install ollama
-```
-
 ---
 
 ## 6. Editors
@@ -476,7 +470,7 @@ killall Dock
 ## Quick Install
 
 ```bash
-brew install zsh-syntax-highlighting zsh-autosuggestions fzf starship gh wp-cli composer node jq btop ollama tmux
+brew install zsh-syntax-highlighting zsh-autosuggestions fzf starship gh wp-cli composer node jq btop tmux
 
 brew install --cask \
   kitty \
