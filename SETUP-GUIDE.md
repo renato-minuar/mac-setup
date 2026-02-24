@@ -75,6 +75,80 @@ copy_on_select clipboard
 clipboard_control write-clipboard write-primary read-clipboard read-primary
 ```
 
+### tmux
+
+```bash
+brew install tmux
+```
+
+Create `~/.tmux.conf`:
+
+```
+# Prefix: Ctrl+a (more ergonomic than default Ctrl+b)
+set -g prefix C-a
+unbind C-b
+bind C-a send-prefix
+
+# Reload config
+bind r source-file ~/.tmux.conf
+
+# Splits (keep current path)
+bind | split-window -h -c "#{pane_current_path}"
+bind - split-window -v -c "#{pane_current_path}"
+
+# Navigate panes with vim keys
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+
+# Copy mode with vim keys + system clipboard
+setw -g mode-keys vi
+bind -T copy-mode-vi v send -X begin-selection
+bind -T copy-mode-vi y send -X copy-pipe-and-cancel "pbcopy"
+
+# Start index at 1 (easier to reach on keyboard)
+set -g base-index 1
+setw -g pane-base-index 1
+
+# Colors
+set -g default-terminal "tmux-256color"
+set -ga terminal-overrides ",xterm-256color:Tc"
+
+# No escape delay
+set -sg escape-time 0
+
+# Scrollback
+set -g history-limit 50000
+
+# Status bar
+set -g status-style 'bg=default fg=white'
+```
+
+**Key bindings:**
+
+| Key | Action |
+|-----|--------|
+| `Ctrl+a \|` | Split vertically |
+| `Ctrl+a -` | Split horizontally |
+| `Ctrl+a hjkl` | Navigate panes |
+| `Ctrl+a [` | Enter copy mode |
+| `v` / `y` | Select / copy (in copy mode) |
+| `Ctrl+a d` | Detach session |
+| `tmux attach` | Reattach |
+
+**Scripting panes** (Claude can run this to set up a multi-agent workspace):
+
+```bash
+tmux new-session -d -s dev
+tmux split-window -h
+tmux split-window -v
+tmux send-keys -t dev:0.0 "claude" Enter
+tmux send-keys -t dev:0.1 "claude" Enter
+tmux send-keys -t dev:0.2 "npm run dev" Enter
+tmux attach -t dev
+```
+
 ---
 
 ## 3. Shell (zsh)
@@ -390,7 +464,7 @@ killall Dock
 ## Quick Install
 
 ```bash
-brew install zsh-syntax-highlighting zsh-autosuggestions fzf starship gh wp-cli composer node jq btop ollama
+brew install zsh-syntax-highlighting zsh-autosuggestions fzf starship gh wp-cli composer node jq btop ollama tmux
 
 brew install --cask \
   kitty \

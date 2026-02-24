@@ -7,7 +7,7 @@ Reference for my Mac configuration. Full setup guide in `SETUP-GUIDE.md`.
 | Category | Tool |
 |----------|------|
 | Package manager | Homebrew |
-| Terminal | Kitty + Fira Code |
+| Terminal | Kitty + Fira Code + tmux |
 | Shell | zsh + syntax-highlighting + autosuggestions + fzf + Starship |
 | Editors | Google Antigravity, VS Code |
 | Notes | Obsidian |

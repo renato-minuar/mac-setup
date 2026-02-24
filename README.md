@@ -20,7 +20,7 @@ macOS configuration for productivity, terminal workflows, and web development â€
 
 | Category | Tools |
 |----------|-------|
-| Terminal | Kitty + Fira Code + Starship |
+| Terminal | Kitty + Fira Code + Starship + tmux |
 | Shell | zsh + syntax-highlighting + autosuggestions + fzf |
 | Editors | VS Code, Google Antigravity |
 | Launcher | Raycast |
