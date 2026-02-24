@@ -53,6 +53,9 @@ scrollback_lines 10000
 window_padding_width 8
 hide_window_decorations no
 confirm_os_window_close 0
+background_opacity 0.65
+background_blur 48
+background #1a0a2e
 
 # Tab bar
 tab_bar_style powerline
@@ -187,6 +190,9 @@ disabled = true
 ### `~/.zshrc`
 
 ```bash
+# Random dark background per Kitty split
+[[ -n "$KITTY_WINDOW_ID" ]] && printf '\e]11;#%02x%02x%02x\e\\' $((RANDOM % 50 + 15)) $((RANDOM % 50 + 15)) $((RANDOM % 50 + 15))
+
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source <(fzf --zsh)
