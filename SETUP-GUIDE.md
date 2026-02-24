@@ -77,7 +77,7 @@ clipboard_control write-clipboard write-primary read-clipboard read-primary
 
 ### tmux
 
-Three reasons this is in the stack: (1) sessions persist — accidental `Ctrl+C` doesn't kill a running Claude Code session, reattach with `tmux attach`; (2) keyboard-driven copy with vim motions, no mouse needed; (3) fully scriptable — Claude can spawn and orchestrate multiple panes programmatically.
+Three reasons this is in the stack: (1) sessions persist — accidental `Ctrl+C` doesn't kill a running Claude Code session, reattach with `tmux attach`; (2) keyboard-driven copy without touching the mouse; (3) fully scriptable — Claude can spawn and orchestrate multiple panes programmatically.
 
 ```bash
 brew install tmux
@@ -98,13 +98,13 @@ bind r source-file ~/.tmux.conf
 bind | split-window -h -c "#{pane_current_path}"
 bind - split-window -v -c "#{pane_current_path}"
 
-# Navigate panes with vim keys
-bind h select-pane -L
-bind j select-pane -D
-bind k select-pane -U
-bind l select-pane -R
+# Navigate panes
+bind Left select-pane -L
+bind Down select-pane -D
+bind Up select-pane -U
+bind Right select-pane -R
 
-# Copy mode with vim keys + system clipboard
+# Copy mode + system clipboard
 setw -g mode-keys vi
 bind -T copy-mode-vi v send -X begin-selection
 bind -T copy-mode-vi y send -X copy-pipe-and-cancel "pbcopy"
@@ -133,7 +133,7 @@ set -g status-style 'bg=default fg=white'
 |-----|--------|
 | `Ctrl+a \|` | Split vertically |
 | `Ctrl+a -` | Split horizontally |
-| `Ctrl+a hjkl` | Navigate panes |
+| `Ctrl+a arrows` | Navigate panes |
 | `Ctrl+a [` | Enter copy mode |
 | `v` / `y` | Select / copy (in copy mode) |
 | `Ctrl+a d` | Detach session |
