@@ -17,11 +17,12 @@ Reference for my Mac configuration. Full setup guide in `SETUP-GUIDE.md`.
 | JavaScript | Node.js, Bun |
 | Database | Beekeeper Studio |
 | Containers | Docker Desktop |
-| Communication | Slack, Discord, Telegram, Google Chat |
+| Communication | Slack, Discord, Telegram, Google Chat, WhatsApp |
 | File sync | Google Drive |
-| Media | Spotify, VLC |
+| Media | Spotify, VLC, qBittorrent |
+| VPN | ProtonVPN |
 | Window switcher | AltTab (Cmd+Tab, Windows-style) |
-| Utilities | btop, jq, ImageOptim, HiddenBar, Stats |
+| Utilities | btop, jq, ImageOptim, HiddenBar, Stats, Scroll Reverser |
 
 ## Preferences
 

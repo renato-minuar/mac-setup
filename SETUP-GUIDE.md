@@ -364,7 +364,7 @@ Grant Accessibility permissions on first launch: System Settings → Privacy & S
 ## 11. Communication
 
 ```bash
-brew install --cask slack discord telegram google-chat
+brew install --cask slack discord telegram google-chat whatsapp
 ```
 
 Google Chat requires Rosetta 2 on Apple Silicon.
@@ -379,26 +379,34 @@ brew install --cask google-drive
 
 ---
 
-## 13. Utilities
+## 13. VPN
+
+```bash
+brew install --cask protonvpn
+```
+
+---
+
+## 14. Utilities
 
 ```bash
 brew install btop
-brew install --cask imageoptim hiddenbar stats
+brew install --cask imageoptim hiddenbar stats scroll-reverser
 ```
 
 **Stats clock format:** `EEE HH:mm dd-MM` → `Tue 17:37 31-12`
 
 ---
 
-## 14. Media
+## 15. Media
 
 ```bash
-brew install --cask spotify vlc
+brew install --cask spotify vlc qbittorrent
 ```
 
 ---
 
-## 15. SSH Keys
+## 16. SSH Keys
 
 Migrating from another machine — copy `~/.ssh/` and `~/.gitconfig`, then fix permissions:
 
@@ -410,7 +418,7 @@ chmod 644 ~/.ssh/*.pub
 
 ---
 
-## 16. macOS Settings
+## 17. macOS Settings
 
 ### Finder
 
@@ -485,12 +493,16 @@ brew install --cask \
   slack \
   discord \
   telegram \
+  google-chat \
+  whatsapp \
+  protonvpn \
   spotify \
+  vlc \
+  qbittorrent \
   imageoptim \
   hiddenbar \
   stats \
-  vlc \
-  google-chat \
+  scroll-reverser \
   alt-tab \
   obsidian
 

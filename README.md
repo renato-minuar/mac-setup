@@ -30,7 +30,8 @@ Then follow the [Quick Install](SETUP-GUIDE.md#quick-install) section in the set
 | Containers | Docker Desktop |
 | Database | Beekeeper Studio |
 | File sync | Google Drive |
-| Communication | Slack, Discord, Telegram, Google Chat |
+| Communication | Slack, Discord, Telegram, Google Chat, WhatsApp |
 | Window switcher | AltTab |
-| Utilities | btop, jq, Stats, HiddenBar, ImageOptim |
-| Media | Spotify, VLC |
+| Utilities | btop, jq, Stats, HiddenBar, ImageOptim, Scroll Reverser |
+| Media | Spotify, VLC, qBittorrent |
+| VPN | ProtonVPN |
