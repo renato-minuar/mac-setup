@@ -77,6 +77,8 @@ clipboard_control write-clipboard write-primary read-clipboard read-primary
 
 ### tmux
 
+Three reasons this is in the stack: (1) sessions persist — accidental `Ctrl+C` doesn't kill a running Claude Code session, reattach with `tmux attach`; (2) keyboard-driven copy with vim motions, no mouse needed; (3) fully scriptable — Claude can spawn and orchestrate multiple panes programmatically.
+
 ```bash
 brew install tmux
 ```
