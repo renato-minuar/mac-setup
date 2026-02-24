@@ -78,8 +78,6 @@ copy_on_select clipboard
 clipboard_control write-clipboard write-primary read-clipboard read-primary
 ```
 
-Note: transparency requires **System Settings → Accessibility → Display → Reduce transparency** to be OFF. Changes to background color require a full restart (`Cmd+Q`), not just a config reload.
-
 ---
 
 ## 3. Terminal Multiplexer
