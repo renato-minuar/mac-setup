@@ -18,7 +18,6 @@ Reference for my Mac configuration. Full setup guide in `SETUP-GUIDE.md`.
 | AI/LLM | Ollama |
 | Database | Beekeeper Studio |
 | Containers | Docker Desktop |
-| FTP/SFTP | Cyberduck |
 | Communication | Slack, Discord, Telegram, Google Chat |
 | File sync | Google Drive |
 | Media | Spotify, VLC |

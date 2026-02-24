@@ -379,10 +379,10 @@ Google Chat requires Rosetta 2 on Apple Silicon.
 
 ---
 
-## 12. File Transfer & Sync
+## 12. File Sync
 
 ```bash
-brew install --cask cyberduck google-drive
+brew install --cask google-drive
 ```
 
 ---
@@ -490,7 +490,6 @@ brew install --cask \
   antigravity \
   local \
   beekeeper-studio \
-  cyberduck \
   slack \
   discord \
   telegram \

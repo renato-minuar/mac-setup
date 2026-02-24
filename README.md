@@ -30,7 +30,6 @@ Then follow the [Quick Install](SETUP-GUIDE.md#quick-install) section in the set
 | Containers | Docker Desktop |
 | Database | Beekeeper Studio |
 | AI/LLM | Ollama |
-| FTP/SFTP | Cyberduck |
 | File sync | Google Drive |
 | Communication | Slack, Discord, Telegram, Google Chat |
 | Window switcher | AltTab |
