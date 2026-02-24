@@ -10,22 +10,29 @@ macOS configuration for productivity, terminal workflows, and web development â€
 ## Quick Start
 
 ```bash
-# Install Homebrew first
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-# Then run the install script from SETUP-GUIDE.md
 ```
+
+Then follow the [Quick Install](SETUP-GUIDE.md#quick-install) section in the setup guide.
 
 ## Stack
 
 | Category | Tools |
 |----------|-------|
-| Terminal | Kitty + Fira Code + Starship + tmux |
-| Shell | zsh + syntax-highlighting + autosuggestions + fzf |
+| Terminal | Kitty + Fira Code + tmux |
+| Shell | zsh + Starship + fzf + syntax-highlighting + autosuggestions |
 | Editors | VS Code, Google Antigravity |
+| Notes | Obsidian |
 | Launcher | Raycast |
+| Browsers | Chrome, Firefox |
 | WordPress | LocalWP, WP-CLI, Composer |
+| JavaScript | Node.js, Bun |
 | Containers | Docker Desktop |
-| Utilities | Stats, HiddenBar, btop, ImageOptim |
-
-See the full setup guide for details.
+| Database | Beekeeper Studio |
+| AI/LLM | Ollama |
+| FTP/SFTP | Cyberduck |
+| File sync | Google Drive |
+| Communication | Slack, Discord, Telegram, Google Chat |
+| Window switcher | AltTab |
+| Utilities | btop, jq, Stats, HiddenBar, ImageOptim |
+| Media | Spotify, VLC |

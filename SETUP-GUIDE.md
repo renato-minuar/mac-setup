@@ -78,6 +78,12 @@ copy_on_select clipboard
 clipboard_control write-clipboard write-primary read-clipboard read-primary
 ```
 
+Note: transparency requires **System Settings → Accessibility → Display → Reduce transparency** to be OFF. Changes to background color require a full restart (`Cmd+Q`), not just a config reload.
+
+---
+
+## 3. Terminal Multiplexer
+
 ### tmux
 
 Three reasons this is in the stack: (1) sessions persist — accidental `Ctrl+C` doesn't kill a running Claude Code session, reattach with `tmux attach`; (2) keyboard-driven copy without touching the mouse; (3) fully scriptable — Claude can spawn and orchestrate multiple panes programmatically.
@@ -148,15 +154,15 @@ set -g status-style 'bg=default fg=white'
 tmux new-session -d -s dev
 tmux split-window -h
 tmux split-window -v
-tmux send-keys -t dev:0.0 "claude" Enter
-tmux send-keys -t dev:0.1 "claude" Enter
-tmux send-keys -t dev:0.2 "npm run dev" Enter
+tmux send-keys -t dev:1.1 "claude" Enter
+tmux send-keys -t dev:1.2 "claude" Enter
+tmux send-keys -t dev:1.3 "npm run dev" Enter
 tmux attach -t dev
 ```
 
 ---
 
-## 3. Shell (zsh)
+## 4. Shell (zsh)
 
 ### Packages
 
@@ -206,7 +212,7 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 ---
 
-## 4. Development Tools
+## 5. Development Tools
 
 ### Git
 
@@ -270,7 +276,7 @@ brew install ollama
 
 ---
 
-## 5. Editors
+## 6. Editors
 
 ### VS Code
 
@@ -296,7 +302,7 @@ brew install --cask obsidian
 
 ---
 
-## 6. WordPress
+## 7. WordPress
 
 ### LocalWP
 
@@ -312,7 +318,7 @@ brew install --cask beekeeper-studio
 
 ---
 
-## 7. Browsers
+## 8. Browsers
 
 ```bash
 brew install --cask google-chrome firefox
@@ -322,7 +328,7 @@ Set Chrome as default: System Settings → Desktop & Dock → Default web browse
 
 ---
 
-## 8. Productivity
+## 9. Productivity
 
 ### Raycast
 
@@ -349,7 +355,7 @@ Import settings: double-click `raycast-settings.rayconfig` in this repo.
 
 ---
 
-## 9. Window Switcher
+## 10. Window Switcher
 
 ### AltTab
 
@@ -363,7 +369,7 @@ Grant Accessibility permissions on first launch: System Settings → Privacy & S
 
 ---
 
-## 10. Communication
+## 11. Communication
 
 ```bash
 brew install --cask slack discord telegram google-chat
@@ -373,7 +379,7 @@ Google Chat requires Rosetta 2 on Apple Silicon.
 
 ---
 
-## 11. File Transfer & Sync
+## 12. File Transfer & Sync
 
 ```bash
 brew install --cask cyberduck google-drive
@@ -381,7 +387,7 @@ brew install --cask cyberduck google-drive
 
 ---
 
-## 12. Utilities
+## 13. Utilities
 
 ```bash
 brew install btop
@@ -392,7 +398,7 @@ brew install --cask imageoptim hiddenbar stats
 
 ---
 
-## 13. Media
+## 14. Media
 
 ```bash
 brew install --cask spotify vlc
@@ -400,7 +406,7 @@ brew install --cask spotify vlc
 
 ---
 
-## 14. SSH Keys
+## 15. SSH Keys
 
 Migrating from another machine — copy `~/.ssh/` and `~/.gitconfig`, then fix permissions:
 
@@ -412,7 +418,7 @@ chmod 644 ~/.ssh/*.pub
 
 ---
 
-## 15. macOS Settings
+## 16. macOS Settings
 
 ### Finder
 
