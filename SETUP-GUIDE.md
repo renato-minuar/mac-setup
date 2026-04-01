@@ -377,12 +377,14 @@ brew install --cask protonvpn
 
 ```bash
 brew install btop cloudflared
-brew install --cask imageoptim hiddenbar stats karabiner-elements
+brew install --cask imageoptim hiddenbar stats karabiner-elements mos
 ```
 
 **Stats clock format:** `EEE HH:mm dd-MM` → `Tue 17:37 31-12`
 
 **Karabiner-Elements:** Useful for remapping keys and diagnosing key issues via EventViewer.
+
+**Mos:** Smooth scrolling for external mice. Grant Accessibility permissions on first launch.
 
 ---
 
@@ -527,6 +529,7 @@ brew install --cask \
   hiddenbar \
   stats \
   karabiner-elements \
+  mos \
   gimp \
   libreoffice \
   filezilla \

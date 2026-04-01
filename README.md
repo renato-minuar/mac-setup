@@ -31,7 +31,9 @@ Then follow the [Quick Install](SETUP-GUIDE.md#quick-install) section in the set
 | Database | Beekeeper Studio |
 | File sync | Google Drive |
 | Communication | Slack, Discord, Telegram, Google Chat, WhatsApp |
-| Window switcher | AltTab |
-| Utilities | btop, jq, Stats, HiddenBar, ImageOptim, Scroll Reverser |
+| Design & Office | GIMP, LibreOffice |
+| FTP | FileZilla |
+| Cloud CLI | gcloud-cli |
+| Utilities | btop, jq, Stats, HiddenBar, ImageOptim, Karabiner-Elements, Mos, cloudflared |
 | Media | Spotify, VLC, qBittorrent |
 | VPN | ProtonVPN |

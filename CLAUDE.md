@@ -24,7 +24,7 @@ Reference for my Mac configuration. Full setup guide in `SETUP-GUIDE.md`.
 | Design & Office | GIMP, LibreOffice |
 | FTP | FileZilla |
 | Cloud CLI | gcloud-cli |
-| Utilities | btop, jq, ImageOptim, HiddenBar, Stats, Karabiner-Elements, cloudflared |
+| Utilities | btop, jq, ImageOptim, HiddenBar, Stats, Karabiner-Elements, Mos, cloudflared |
 
 ## Preferences
 
