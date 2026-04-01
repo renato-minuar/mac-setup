@@ -347,21 +347,7 @@ Import settings: double-click `raycast-settings.rayconfig` in this repo.
 
 ---
 
-## 10. Window Switcher
-
-### AltTab
-
-Windows-style Alt+Tab that switches individual windows instead of apps.
-
-```bash
-brew install --cask alt-tab
-```
-
-Grant Accessibility permissions on first launch: System Settings → Privacy & Security → Accessibility.
-
----
-
-## 11. Communication
+## 10. Communication
 
 ```bash
 brew install --cask slack discord telegram google-chat whatsapp
@@ -371,7 +357,7 @@ Google Chat requires Rosetta 2 on Apple Silicon.
 
 ---
 
-## 12. File Sync
+## 11. File Sync
 
 ```bash
 brew install --cask google-drive
@@ -379,7 +365,7 @@ brew install --cask google-drive
 
 ---
 
-## 13. VPN
+## 12. VPN
 
 ```bash
 brew install --cask protonvpn
@@ -387,18 +373,20 @@ brew install --cask protonvpn
 
 ---
 
-## 14. Utilities
+## 13. Utilities
 
 ```bash
-brew install btop
-brew install --cask imageoptim hiddenbar stats
+brew install btop cloudflared
+brew install --cask imageoptim hiddenbar stats karabiner-elements
 ```
 
 **Stats clock format:** `EEE HH:mm dd-MM` → `Tue 17:37 31-12`
 
+**Karabiner-Elements:** Useful for remapping keys and diagnosing key issues via EventViewer.
+
 ---
 
-## 15. Media
+## 14. Media
 
 ```bash
 brew install --cask spotify vlc qbittorrent
@@ -406,7 +394,43 @@ brew install --cask spotify vlc qbittorrent
 
 ---
 
-## 16. SSH Keys
+## 15. Design & Office
+
+### GIMP
+
+```bash
+brew install --cask gimp
+```
+
+### LibreOffice
+
+```bash
+brew install --cask libreoffice
+```
+
+---
+
+## 16. FTP
+
+### FileZilla
+
+```bash
+brew install --cask filezilla
+```
+
+---
+
+## 17. Cloud CLI
+
+### Google Cloud SDK
+
+```bash
+brew install --cask gcloud-cli
+```
+
+---
+
+## 18. SSH Keys
 
 Migrating from another machine — copy `~/.ssh/` and `~/.gitconfig`, then fix permissions:
 
@@ -418,7 +442,7 @@ chmod 644 ~/.ssh/*.pub
 
 ---
 
-## 17. macOS Settings
+## 19. macOS Settings
 
 ### Finder
 
@@ -478,7 +502,7 @@ killall Dock
 ## Quick Install
 
 ```bash
-brew install zsh-syntax-highlighting zsh-autosuggestions fzf starship gh wp-cli composer node jq btop tmux
+brew install zsh-syntax-highlighting zsh-autosuggestions fzf starship gh wp-cli composer node jq btop tmux cloudflared
 
 brew install --cask \
   kitty \
@@ -502,7 +526,11 @@ brew install --cask \
   imageoptim \
   hiddenbar \
   stats \
-  alt-tab \
+  karabiner-elements \
+  gimp \
+  libreoffice \
+  filezilla \
+  gcloud-cli \
   obsidian
 
 # Run separately (require password prompt):
@@ -521,4 +549,4 @@ brew install --cask docker-desktop google-drive
 
 **Per-device scroll direction:** macOS now supports separate Natural Scrolling toggles for Mouse and Trackpad in System Settings.
 
-**Diagnosing key issues:** Karabiner-Elements (`brew install --cask karabiner-elements`) includes EventViewer to inspect exact keycodes.
+**Diagnosing key issues:** Karabiner-Elements includes EventViewer to inspect exact keycodes (installed in § 13).

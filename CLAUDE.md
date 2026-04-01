@@ -21,8 +21,10 @@ Reference for my Mac configuration. Full setup guide in `SETUP-GUIDE.md`.
 | File sync | Google Drive |
 | Media | Spotify, VLC, qBittorrent |
 | VPN | ProtonVPN |
-| Window switcher | AltTab (Cmd+Tab, Windows-style) |
-| Utilities | btop, jq, ImageOptim, HiddenBar, Stats |
+| Design & Office | GIMP, LibreOffice |
+| FTP | FileZilla |
+| Cloud CLI | gcloud-cli |
+| Utilities | btop, jq, ImageOptim, HiddenBar, Stats, Karabiner-Elements, cloudflared |
 
 ## Preferences
 
