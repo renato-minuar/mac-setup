@@ -22,7 +22,7 @@ Reference for my Mac configuration. Full setup guide in `SETUP-GUIDE.md`.
 | Media | Spotify, VLC, qBittorrent |
 | VPN | ProtonVPN |
 | Window switcher | AltTab (Cmd+Tab, Windows-style) |
-| Utilities | btop, jq, ImageOptim, HiddenBar, Stats, Scroll Reverser |
+| Utilities | btop, jq, ImageOptim, HiddenBar, Stats |
 
 ## Preferences
 

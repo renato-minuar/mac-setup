@@ -391,7 +391,7 @@ brew install --cask protonvpn
 
 ```bash
 brew install btop
-brew install --cask imageoptim hiddenbar stats scroll-reverser
+brew install --cask imageoptim hiddenbar stats
 ```
 
 **Stats clock format:** `EEE HH:mm dd-MM` → `Tue 17:37 31-12`
@@ -502,7 +502,6 @@ brew install --cask \
   imageoptim \
   hiddenbar \
   stats \
-  scroll-reverser \
   alt-tab \
   obsidian
 
@@ -520,6 +519,6 @@ brew install --cask docker-desktop google-drive
 
 **Modifier + arrow key combos not working:** Some keyboards have key matrix ghosting where certain multi-key combinations can't register simultaneously. This is a hardware limitation — use different shortcuts.
 
-**Per-device scroll direction:** macOS doesn't support this natively. Use `brew install --cask scroll-reverser` or `brew install --cask linearmouse`.
+**Per-device scroll direction:** macOS now supports separate Natural Scrolling toggles for Mouse and Trackpad in System Settings.
 
 **Diagnosing key issues:** Karabiner-Elements (`brew install --cask karabiner-elements`) includes EventViewer to inspect exact keycodes.
