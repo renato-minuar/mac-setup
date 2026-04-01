@@ -1,0 +1,21 @@
+# Simpler prompt character
+[character]
+success_symbol = "[❯](green)"
+error_symbol = "[❯](red)"
+
+# Shorter directory path (show 3 levels max)
+[directory]
+truncation_length = 3
+truncate_to_repo = true
+
+# Show command duration only if > 3 seconds
+[cmd_duration]
+min_time = 3000
+
+# Hide username (you know who you are)
+[username]
+disabled = true
+
+# Hide hostname (you know where you are)
+[hostname]
+disabled = true

@@ -2,18 +2,22 @@
 
 macOS configuration for productivity, terminal workflows, and web development — without Apple's ecosystem lock-in.
 
-## What's Inside
-
-- **[SETUP-GUIDE.md](SETUP-GUIDE.md)** — Complete setup guide with all commands and configs
-- **[raycast-settings.rayconfig](raycast-settings.rayconfig)** — Raycast settings export (double-click to import)
-
 ## Quick Start
 
 ```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+git clone https://github.com/renato-minuar/mac-setup.git
+cd mac-setup
+./install.sh
 ```
 
-Then follow the [Quick Install](SETUP-GUIDE.md#quick-install) section in the setup guide.
+Installs all packages, copies config files, applies macOS defaults. Follow the manual steps printed at the end.
+
+## What's Inside
+
+- **[install.sh](install.sh)** — Automated setup script
+- **[configs/](configs/)** — Dotfiles (zshrc, tmux, kitty, starship)
+- **[SETUP-GUIDE.md](SETUP-GUIDE.md)** — Detailed reference for each tool and setting
+- **[raycast-settings.rayconfig](raycast-settings.rayconfig)** — Raycast settings export (double-click to import)
 
 ## Stack
 
