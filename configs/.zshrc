@@ -23,9 +23,9 @@ claudio() {
     shift
   done
 
-  # Build claude command
-  local claude_cmd="claude"
-  [[ "$safe_mode" == false ]] && claude_cmd="claude --dangerously-skip-permissions"
+  # Build claude command as array
+  local -a claude_cmd=(claude)
+  [[ "$safe_mode" == false ]] && claude_cmd+=(--dangerously-skip-permissions)
 
   # Clean dead claude-* tmux sessions (only those where the process has exited)
   if [[ "$do_clean" == true ]]; then
@@ -55,16 +55,16 @@ claudio() {
 
     if [[ -n "$TMUX" ]]; then
       # Already in tmux — just run claude directly
-      eval "$claude_cmd ${args[*]}"
+      "${claude_cmd[@]}" "${args[@]}"
     else
       # Always create a new session (unique ID allows multiple per directory)
       tmux new-session -d -s "$name"
-      tmux send-keys -t "$name" "$claude_cmd ${args[*]}" Enter
+      tmux send-keys -t "$name" "${claude_cmd[*]} ${args[*]}" Enter
       tmux attach -t "$name"
     fi
   else
     # No tmux — just run claude
-    eval "$claude_cmd ${args[*]}"
+    "${claude_cmd[@]}" "${args[@]}"
   fi
 }
 

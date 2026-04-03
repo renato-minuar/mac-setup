@@ -84,21 +84,21 @@ echo ""
 echo "Linking config files..."
 
 # zshrc
-cp "$SCRIPT_DIR/configs/.zshrc" ~/.zshrc
+ln -sf "$SCRIPT_DIR/configs/.zshrc" ~/.zshrc
 echo "  ~/.zshrc"
 
 # tmux
-cp "$SCRIPT_DIR/configs/.tmux.conf" ~/.tmux.conf
+ln -sf "$SCRIPT_DIR/configs/.tmux.conf" ~/.tmux.conf
 echo "  ~/.tmux.conf"
 
 # kitty
 mkdir -p ~/.config/kitty
-cp "$SCRIPT_DIR/configs/kitty.conf" ~/.config/kitty/kitty.conf
+ln -sf "$SCRIPT_DIR/configs/kitty.conf" ~/.config/kitty/kitty.conf
 echo "  ~/.config/kitty/kitty.conf"
 
 # starship
 mkdir -p ~/.config
-cp "$SCRIPT_DIR/configs/starship.toml" ~/.config/starship.toml
+ln -sf "$SCRIPT_DIR/configs/starship.toml" ~/.config/starship.toml
 echo "  ~/.config/starship.toml"
 
 # --- macOS defaults ---
