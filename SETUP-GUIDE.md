@@ -85,20 +85,20 @@ tmux attach -t dev
 ### Packages
 
 ```bash
-brew install zsh-syntax-highlighting zsh-autosuggestions fzf starship
+brew install zsh-syntax-highlighting zsh-autosuggestions fzf powerlevel10k
 ```
 
-### Starship Configuration
+### Powerlevel10k Configuration
 
-Config: [`configs/starship.toml`](configs/starship.toml) → `~/.config/starship.toml`
+Config: [`configs/.p10k.zsh`](configs/.p10k.zsh) → `~/.p10k.zsh`
 
-Highlights: minimal prompt (`❯`), 3-level directory truncation, hidden username/hostname.
+Sourced from `~/.zshrc` via `source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme`. Run `p10k configure` to regenerate.
 
 ### `~/.zshrc`
 
 Config: [`configs/.zshrc`](configs/.zshrc) → `~/.zshrc`
 
-Highlights: random dark background per Kitty split, `claudio` function (Claude Code launcher with tmux integration), syntax highlighting, autosuggestions, fzf, Starship, Bun.
+Highlights: random dark background per Kitty split, `claudio` function (Claude Code launcher with tmux integration), syntax highlighting, autosuggestions, fzf, Powerlevel10k, Bun.
 
 ---
 

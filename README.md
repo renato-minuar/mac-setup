@@ -15,7 +15,7 @@ Installs all packages, copies config files, applies macOS defaults. Follow the m
 ## What's Inside
 
 - **[install.sh](install.sh)** — Automated setup script
-- **[configs/](configs/)** — Dotfiles (zshrc, tmux, kitty, starship)
+- **[configs/](configs/)** — Dotfiles (zshrc, tmux, kitty, p10k)
 - **[SETUP-GUIDE.md](SETUP-GUIDE.md)** — Detailed reference for each tool and setting
 - **[raycast-settings.rayconfig](raycast-settings.rayconfig)** — Raycast settings export (double-click to import)
 
@@ -24,7 +24,7 @@ Installs all packages, copies config files, applies macOS defaults. Follow the m
 | Category | Tools |
 |----------|-------|
 | Terminal | Kitty + Fira Code + tmux |
-| Shell | zsh + Starship + fzf + syntax-highlighting + autosuggestions |
+| Shell | zsh + Powerlevel10k + fzf + syntax-highlighting + autosuggestions |
 | Editors | VS Code, Google Antigravity |
 | Notes | Obsidian |
 | Launcher | Raycast |

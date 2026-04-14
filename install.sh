@@ -20,7 +20,7 @@ brew install \
   zsh-syntax-highlighting \
   zsh-autosuggestions \
   fzf \
-  starship \
+  powerlevel10k \
   gh \
   wp-cli \
   composer \
@@ -96,10 +96,9 @@ mkdir -p ~/.config/kitty
 ln -sf "$SCRIPT_DIR/configs/kitty.conf" ~/.config/kitty/kitty.conf
 echo "  ~/.config/kitty/kitty.conf"
 
-# starship
-mkdir -p ~/.config
-ln -sf "$SCRIPT_DIR/configs/starship.toml" ~/.config/starship.toml
-echo "  ~/.config/starship.toml"
+# powerlevel10k
+ln -sf "$SCRIPT_DIR/configs/.p10k.zsh" ~/.p10k.zsh
+echo "  ~/.p10k.zsh"
 
 # --- macOS defaults ---
 echo ""
