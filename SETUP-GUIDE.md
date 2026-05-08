@@ -85,8 +85,10 @@ tmux attach -t dev
 ### Packages
 
 ```bash
-brew install zsh-syntax-highlighting zsh-autosuggestions fzf powerlevel10k
+brew install zsh-syntax-highlighting zsh-autosuggestions fzf powerlevel10k zoxide
 ```
+
+`zoxide` provides smarter `cd` — `z <partial-name>` jumps to any directory you've visited before, ranked by frecency.
 
 ### Powerlevel10k Configuration
 
@@ -98,7 +100,7 @@ Sourced from `~/.zshrc` via `source $(brew --prefix)/share/powerlevel10k/powerle
 
 Config: [`configs/.zshrc`](configs/.zshrc) → `~/.zshrc`
 
-Highlights: random dark background per Kitty split, `claudio` function (Claude Code launcher with tmux integration), syntax highlighting, autosuggestions, fzf, Powerlevel10k, Bun.
+Highlights: random dark background per Kitty split, `claudio` function (Claude Code launcher with tmux integration), syntax highlighting, autosuggestions, fzf, zoxide, Powerlevel10k, Bun.
 
 ---
 

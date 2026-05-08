@@ -8,7 +8,7 @@ Reference for my Mac configuration. Full setup guide in `SETUP-GUIDE.md`.
 |----------|------|
 | Package manager | Homebrew |
 | Terminal | Kitty + Fira Code + tmux |
-| Shell | zsh + syntax-highlighting + autosuggestions + fzf + Powerlevel10k |
+| Shell | zsh + syntax-highlighting + autosuggestions + fzf + zoxide + Powerlevel10k |
 | Editors | Google Antigravity, VS Code |
 | Notes | Obsidian |
 | Launcher | Raycast (Cmd+Space) |

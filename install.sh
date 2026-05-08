@@ -21,6 +21,7 @@ brew install \
   zsh-autosuggestions \
   fzf \
   powerlevel10k \
+  zoxide \
   gh \
   wp-cli \
   composer \

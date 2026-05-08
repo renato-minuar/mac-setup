@@ -24,7 +24,7 @@ Installs all packages, copies config files, applies macOS defaults. Follow the m
 | Category | Tools |
 |----------|-------|
 | Terminal | Kitty + Fira Code + tmux |
-| Shell | zsh + Powerlevel10k + fzf + syntax-highlighting + autosuggestions |
+| Shell | zsh + Powerlevel10k + fzf + zoxide + syntax-highlighting + autosuggestions |
 | Editors | VS Code, Google Antigravity |
 | Notes | Obsidian |
 | Launcher | Raycast |

@@ -114,6 +114,9 @@ source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # fzf keybindings and completion (Ctrl+R for history, Ctrl+T for files)
 source <(fzf --zsh)
 
+# zoxide — smarter cd (usage: z <partial-name>)
+eval "$(zoxide init zsh)"
+
 # Added by Antigravity
 export PATH="/Users/benne-air/.antigravity/antigravity/bin:$PATH"
 
