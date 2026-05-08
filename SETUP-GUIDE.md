@@ -2,7 +2,7 @@
 
 macOS setup for productivity, terminal workflows, and web development — no iCloud, no Apple ecosystem lock-in.
 
-> On a fresh machine: `git clone` this repo, run `./install.sh`, and follow the manual steps at the end. Config files live in `configs/`.
+> On a fresh machine: `git clone` this repo, run `./install.sh`, and follow the manual steps at the end. Config files live in `configs/`. For a one-line description of each app, see [`APPS.md`](APPS.md).
 
 ---
 

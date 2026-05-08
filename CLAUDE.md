@@ -1,6 +1,6 @@
 # macOS Setup
 
-Reference for my Mac configuration. Full setup guide in `SETUP-GUIDE.md`.
+Reference for my Mac configuration. Full setup guide in `SETUP-GUIDE.md`. One-liner description of each app in `APPS.md`.
 
 ## Software Stack
 

@@ -17,6 +17,7 @@ Installs all packages, copies config files, applies macOS defaults. Follow the m
 - **[install.sh](install.sh)** — Automated setup script
 - **[configs/](configs/)** — Dotfiles (zshrc, tmux, kitty, p10k)
 - **[SETUP-GUIDE.md](SETUP-GUIDE.md)** — Detailed reference for each tool and setting
+- **[APPS.md](APPS.md)** — One-liner description of every app and CLI tool installed
 - **[raycast-settings.rayconfig](raycast-settings.rayconfig)** — Raycast settings export (double-click to import)
 
 ## Stack
@@ -41,3 +42,5 @@ Installs all packages, copies config files, applies macOS defaults. Follow the m
 | Utilities | btop, jq, Stats, HiddenBar, ImageOptim, Karabiner-Elements, Mos, Numi, Shottr, cloudflared |
 | Media | Spotify, VLC, qBittorrent |
 | VPN | ProtonVPN |
+
+See [APPS.md](APPS.md) for a one-line description of each.
