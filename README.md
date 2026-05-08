@@ -35,9 +35,9 @@ Installs all packages, copies config files, applies macOS defaults. Follow the m
 | Database | Beekeeper Studio |
 | File sync | Google Drive |
 | Communication | Slack, Discord, Telegram, Google Chat, WhatsApp |
-| Design & Office | GIMP, LibreOffice |
+| Design & Office | GIMP, Inkscape, LibreOffice |
 | FTP | FileZilla |
 | Cloud CLI | gcloud-cli |
-| Utilities | btop, jq, Stats, HiddenBar, ImageOptim, Karabiner-Elements, Mos, cloudflared |
+| Utilities | btop, jq, Stats, HiddenBar, ImageOptim, Karabiner-Elements, Mos, Numi, Shottr, cloudflared |
 | Media | Spotify, VLC, qBittorrent |
 | VPN | ProtonVPN |

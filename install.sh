@@ -58,7 +58,10 @@ brew install --cask \
   stats \
   karabiner-elements \
   mos \
+  numi \
+  shottr \
   gimp \
+  inkscape \
   libreoffice \
   filezilla \
   gcloud-cli \

@@ -271,7 +271,7 @@ brew install --cask protonvpn
 
 ```bash
 brew install btop cloudflared
-brew install --cask imageoptim hiddenbar stats karabiner-elements mos
+brew install --cask imageoptim hiddenbar stats karabiner-elements mos numi shottr
 ```
 
 **Stats clock format:** `EEE HH:mm dd-MM` → `Tue 17:37 31-12`
@@ -279,6 +279,10 @@ brew install --cask imageoptim hiddenbar stats karabiner-elements mos
 **Karabiner-Elements:** Useful for remapping keys and diagnosing key issues via EventViewer.
 
 **Mos:** Smooth scrolling for external mice. Grant Accessibility permissions on first launch.
+
+**Numi:** Notepad calculator — type `120 USD in EUR + 15%` and get a result. Cmd+Shift+N to summon.
+
+**Shottr:** Fast screenshot tool with annotations and OCR. Replaces macOS native shortcuts when remapped in System Settings → Keyboard → Shortcuts → Screenshots.
 
 ---
 
@@ -296,6 +300,12 @@ brew install --cask spotify vlc qbittorrent
 
 ```bash
 brew install --cask gimp
+```
+
+### Inkscape
+
+```bash
+brew install --cask inkscape
 ```
 
 ### LibreOffice
