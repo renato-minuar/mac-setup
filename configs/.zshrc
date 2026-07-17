@@ -130,3 +130,22 @@ source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Added by Antigravity IDE
+export PATH="/Users/benne-air/.antigravity-ide/antigravity-ide/bin:$PATH"
+
+# atrio monorepo pins node 22 (better-sqlite3 ABI breaks under default node 26).
+# Auto-prepend the node@22 keg inside ~/projects/atrio, drop it on leaving.
+_atrio_node22_path() {
+  local keg="/opt/homebrew/opt/node@22/bin"
+  [[ -d "$keg" ]] || return 0
+  case "$PWD/" in
+    "$HOME/projects/atrio/"*)
+      [[ ":$PATH:" == *":$keg:"* ]] || export PATH="$keg:$PATH" ;;
+    *)
+      [[ ":$PATH:" == *":$keg:"* ]] && export PATH="${PATH//$keg:/}" ;;
+  esac
+}
+autoload -U add-zsh-hook
+add-zsh-hook chpwd _atrio_node22_path
+_atrio_node22_path
