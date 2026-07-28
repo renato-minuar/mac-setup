@@ -52,6 +52,3 @@ Provisions a **work machine**. Two things stay out:
 - Google Drive instead of iCloud
 - Dark mode, dock always visible (no auto-hide), tap to click
 - Finder: list view, home folder default, search current folder
-
-
-
