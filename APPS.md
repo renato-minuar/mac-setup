@@ -86,7 +86,7 @@ One-liner reference for everything in [`install.sh`](install.sh). Install comman
 ## Networking & VPN
 
 - **ProtonVPN** — Privacy-focused VPN with a free tier.
-- **Tailscale** — WireGuard mesh VPN. Reaches your own machines and servers by name from anywhere, with SSH built in.
+- **Tailscale** — WireGuard mesh VPN. Reaches machines and servers by name from anywhere, with SSH built in.
 - **cloudflared** — Cloudflare Tunnel client for exposing local services.
 
 ## Utilities
@@ -128,7 +128,4 @@ One-liner reference for everything in [`install.sh`](install.sh). Install comman
 
 ## Out of scope
 
-Deliberately absent:
-
-- **Entertainment** (Steam, GeForce NOW, Synthesia, and the like) — this provisions a work machine, install those by hand.
-- **Project-specific setup** — a Node version pin belongs in that project's `.nvmrc`, which the shell hook reads generically.
+Entertainment apps (Steam, GeForce NOW, Synthesia, and the like) are installed by hand, not tracked here.

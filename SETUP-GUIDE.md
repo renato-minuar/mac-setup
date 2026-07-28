@@ -164,14 +164,9 @@ brew install node node@22 node@24
 The `_node_pin_path` hook in [`configs/.zshrc`](configs/.zshrc) picks the major per directory on every `cd`:
 
 1. nearest `.node-version` or `.nvmrc` walking up from `$PWD` — nothing to configure, the project already declares it
-2. `~/.config/node-pins` — untracked `<path> <major>` lines, for repos carrying neither file
+2. `~/.config/node-pins` — untracked `<path> <major>` lines, one per repo, for anything that declares neither
 
 A match prepends that keg's `bin` to `PATH`; leaving the directory strips it. No match means the default `node`. The hook is a silent no-op when the keg isn't installed, so `node -v` disagreeing with a project's pin usually means the keg is simply missing.
-
-```bash
-# example ~/.config/node-pins
-~/work/legacy-app   22
-```
 
 ### Bun
 
@@ -533,8 +528,6 @@ killall Dock
 This installs all packages, links config files, and applies macOS defaults. See [`install.sh`](install.sh) for details.
 
 Not covered by the script: FileZilla (no cask any more) and the Google Docs/Sheets/Slides PWAs.
-
-**Scope.** This provisions a work machine. Entertainment apps stay out — install those by hand.
 
 ### Uncommittable bits
 
