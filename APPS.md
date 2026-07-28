@@ -1,6 +1,6 @@
 # Apps & Tools
 
-One-liner reference for everything in [`install.sh`](install.sh). Install commands and config details live in [`SETUP-GUIDE.md`](SETUP-GUIDE.md). Coming from Windows, start with [`WINDOWS-TO-MAC.md`](WINDOWS-TO-MAC.md).
+One-liner reference for everything in [`install.sh`](install.sh). Install commands and config details live in [`SETUP-GUIDE.md`](SETUP-GUIDE.md).
 
 ## Package Manager
 

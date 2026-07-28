@@ -2,8 +2,6 @@
 
 My macOS configuration, reproducible from one script — terminal-first, no iCloud, no Apple ecosystem lock-in. Packages, dotfiles and system defaults all in one place, so a new machine is an afternoon rather than a week.
 
-**Coming from Windows?** [WINDOWS-TO-MAC.md](WINDOWS-TO-MAC.md) translates the reflexes that stop working: Cmd vs Ctrl, the app-vs-window model, Finder, and why half these tools are here.
-
 ## Quick Start
 
 ```bash
@@ -20,7 +18,6 @@ Installs all packages, links config files, applies macOS defaults. Follow the ma
 - **[configs/](configs/)** — Dotfiles (zshrc, tmux, kitty, p10k), symlinked into `~` by the installer
 - **[SETUP-GUIDE.md](SETUP-GUIDE.md)** — Detailed reference for each tool and setting
 - **[APPS.md](APPS.md)** — One-liner description of every app and CLI tool installed
-- **[WINDOWS-TO-MAC.md](WINDOWS-TO-MAC.md)** — Shortcut, Finder, and window-model translation for switchers
 - **[raycast-settings.rayconfig](raycast-settings.rayconfig)** — Raycast settings export (double-click to import)
 - **[notes/](notes/)** — Scratch notes for one-off setups (KVM wiring, etc.)
 

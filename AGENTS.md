@@ -1,6 +1,6 @@
 # macOS Setup
 
-Reference for my Mac configuration, reproducible from `install.sh`. Full guide in `SETUP-GUIDE.md`, one-liner per app in `APPS.md`, switcher notes in `WINDOWS-TO-MAC.md`.
+Reference for my Mac configuration, reproducible from `install.sh`. Full guide in `SETUP-GUIDE.md`, one-liner per app in `APPS.md`.
 
 ## Scope
 
