@@ -1,8 +1,8 @@
 # macOS Setup
 
-macOS configuration for productivity, terminal workflows, and web development — without Apple's ecosystem lock-in.
+A reproducible macOS setup for development — terminal-first, no iCloud, no Apple ecosystem lock-in. One script installs the packages, links the dotfiles and applies the system defaults.
 
-Scope is a **work machine**: what to run when a new Mac arrives. Entertainment apps and project-specific tooling stay out.
+Nothing here is personal: clone it, run it, and you have a working machine. **Coming from Windows?** Read [WINDOWS-TO-MAC.md](WINDOWS-TO-MAC.md) first — it translates the reflexes that stop working.
 
 ## Quick Start
 
@@ -20,8 +20,8 @@ Installs all packages, links config files, applies macOS defaults. Follow the ma
 - **[configs/](configs/)** — Dotfiles (zshrc, tmux, kitty, p10k), symlinked into `~` by the installer
 - **[SETUP-GUIDE.md](SETUP-GUIDE.md)** — Detailed reference for each tool and setting
 - **[APPS.md](APPS.md)** — One-liner description of every app and CLI tool installed
-- **[notes/](notes/)** — Scratch notes for one-off machine setups (e.g. KVM)
-- **[raycast-settings.rayconfig](raycast-settings.rayconfig)** — Raycast settings export (double-click to import)
+- **[WINDOWS-TO-MAC.md](WINDOWS-TO-MAC.md)** — Shortcut, Finder, and window-model translation for switchers
+- **[personal/](personal/)** — The repo owner's extras, opt-in and separate. Delete it if you cloned this.
 
 ## Stack
 
@@ -29,13 +29,11 @@ Installs all packages, links config files, applies macOS defaults. Follow the ma
 |----------|-------|
 | Terminal | Kitty + Fira Code + tmux |
 | Shell | zsh + Powerlevel10k + fzf + zoxide + syntax-highlighting + autosuggestions + bash 5 |
-| Editors | VS Code (primary), Google Antigravity |
-| Notes | Obsidian |
+| Editors | VS Code, Obsidian |
 | Launcher | Raycast |
 | Browsers | Chrome, Firefox |
-| AI CLIs | Claude Code, Codex, Gemini CLI, rtk, uipro, defuddle |
 | WordPress | LocalWP, WP-CLI, Composer, Subversion, Poedit |
-| JavaScript | Bun, Node.js (+ node@22/@24 pins), pnpm |
+| JavaScript | Bun, Node.js (per-directory version pins), pnpm |
 | Other languages | Go, PHP |
 | Game dev | Godot |
 | Containers | Docker Desktop |
@@ -50,3 +48,9 @@ Installs all packages, links config files, applies macOS defaults. Follow the ma
 | Media | Spotify, VLC, qBittorrent |
 
 See [APPS.md](APPS.md) for a one-line description of each.
+
+## Making it yours
+
+- **Shell:** don't edit `configs/.zshrc` for machine-specific things. It sources `~/.zshrc.local` at the end — put private functions, extra `PATH` entries and tokens there.
+- **Apps:** the cask list in `install.sh` is a starting point, not a prescription. Cut what you don't want.
+- **Defaults:** every `defaults write` in `install.sh` is documented in [SETUP-GUIDE.md § 19](SETUP-GUIDE.md) so you can see what it changes before running it.

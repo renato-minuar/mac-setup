@@ -3,6 +3,8 @@
 macOS setup for productivity, terminal workflows, and web development — no iCloud, no Apple ecosystem lock-in.
 
 > On a fresh machine: `git clone` this repo, run `./install.sh`, and follow the manual steps at the end. Config files live in `configs/`. For a one-line description of each app, see [`APPS.md`](APPS.md).
+>
+> **Switching from Windows?** Read [`WINDOWS-TO-MAC.md`](WINDOWS-TO-MAC.md) first — it covers the muscle-memory differences that make a new Mac feel broken.
 
 ---
 
@@ -44,7 +46,7 @@ Highlights: Fira Code with ligatures, semi-transparent background (0.80 opacity)
 
 ### tmux
 
-Three reasons this is in the stack: (1) sessions persist — accidental `Ctrl+C` doesn't kill a running Claude Code session, reattach with `tmux attach`; (2) keyboard-driven copy without touching the mouse; (3) fully scriptable — Claude can spawn and orchestrate multiple panes programmatically.
+Three reasons this is in the stack: (1) sessions persist — closing the terminal or dropping an SSH connection doesn't kill what's running, reattach with `tmux attach`; (2) keyboard-driven copy without touching the mouse; (3) fully scriptable, so one command lays out a whole workspace.
 
 ```bash
 brew install tmux
@@ -66,15 +68,15 @@ Highlights: `Ctrl+a` prefix, vi copy mode with pbcopy, mouse support, 50k scroll
 | `Ctrl+a d` | Detach session |
 | `tmux attach` | Reattach |
 
-**Scripting panes** (Claude can run this to set up a multi-agent workspace):
+**Scripting panes** — one command builds a three-pane workspace:
 
 ```bash
 tmux new-session -d -s dev
 tmux split-window -h
 tmux split-window -v
-tmux send-keys -t dev:1.1 "claude" Enter
-tmux send-keys -t dev:1.2 "claude" Enter
-tmux send-keys -t dev:1.3 "bun run dev" Enter
+tmux send-keys -t dev:1.1 "bun run dev" Enter
+tmux send-keys -t dev:1.2 "bun test --watch" Enter
+tmux send-keys -t dev:1.3 "btop" Enter
 tmux attach -t dev
 ```
 
@@ -104,12 +106,12 @@ Config: [`configs/.zshrc`](configs/.zshrc) → `~/.zshrc`
 
 Highlights:
 
-- Random dark background per Kitty split
-- `claudio` — Claude Code launcher with tmux integration (`-t` tmux, `-s` safe mode, `-c` clean stale `c-*` sessions, `-n` custom name)
+- Homebrew prefix resolved without shelling out to `brew`, so Intel and Apple Silicon both work
+- Random dark background per Kitty split, so panes stay distinguishable
 - syntax highlighting, autosuggestions, fzf, zoxide, Powerlevel10k
 - Bun install prefix + completions
-- Antigravity and Antigravity IDE PATH entries
 - `_node_pin_path` — `chpwd` hook that switches Node major per directory (see § 5)
+- sources `~/.zshrc.local` at the end if present — machine-specific functions, extra `PATH` entries and anything private go there, never in the tracked file
 
 ---
 
@@ -154,17 +156,21 @@ brew install composer
 ### Node.js and version pins
 
 ```bash
-brew install node node@22 node@24
+brew install node
 ```
 
-`node` is the default keg (currently 26.x). `node@22` and `node@24` are keg-only, for projects whose native modules ship prebuilt binaries against an older ABI (`better-sqlite3` being the usual offender).
+Some projects can't run on the newest major, because a dependency ships prebuilt native binaries against an older ABI (`better-sqlite3` is the usual offender). Install the majors your projects actually pin:
+
+```bash
+brew install node@22   # keg-only — not linked into PATH
+```
 
 The `_node_pin_path` hook in [`configs/.zshrc`](configs/.zshrc) picks the major per directory on every `cd`:
 
 1. nearest `.node-version` or `.nvmrc` walking up from `$PWD` — nothing to configure, the project already declares it
 2. `~/.config/node-pins` — untracked `<path> <major>` lines, for repos carrying neither file
 
-A match prepends `/opt/homebrew/opt/node@<major>/bin` to `PATH`; leaving strips it. No match means the default keg. Install the majors your projects actually pin — the hook is a silent no-op when the keg is missing.
+A match prepends that keg's `bin` to `PATH`; leaving the directory strips it. No match means the default `node`. The hook is a silent no-op when the keg isn't installed, so `node -v` disagreeing with a project's pin usually means the keg is simply missing.
 
 ```bash
 # example ~/.config/node-pins
@@ -182,10 +188,10 @@ Default JS runtime and package manager.
 ### pnpm
 
 ```bash
-npm install -g pnpm
+brew install pnpm
 ```
 
-Only for projects whose lockfile requires it.
+Only for projects whose lockfile demands it.
 
 ### Go
 
@@ -215,7 +221,7 @@ brew install jq
 brew install ripgrep
 ```
 
-`rg` — respects `.gitignore`, far faster than `grep -r`. Claude Code uses it under the hood.
+`rg` — respects `.gitignore` and is far faster than `grep -r`. Most editors and CLI tools shell out to it for search.
 
 ### Docker Desktop
 
@@ -227,32 +233,7 @@ brew install --cask docker-desktop
 
 ---
 
-## 6. AI CLIs
-
-Node globals land in the Homebrew node prefix (`/opt/homebrew/lib/node_modules`), Bun globals in `~/.bun`.
-
-```bash
-npm install -g @anthropic-ai/claude-code @google/gemini-cli defuddle-cli uipro-cli
-bun install -g @openai/codex
-brew install rtk
-brew install --cask claude
-```
-
-| Tool | Command | Notes |
-|------|---------|-------|
-| Claude Code | `claude` | Launch via `claudio` (see § 4). `claude --chrome` for browser control. |
-| Claude desktop | — | Cask `claude`, for non-terminal chat. |
-| Codex CLI | `codex` | Second-opinion reviewer, driven by the `codex-partner` MCP server. |
-| Gemini CLI | `gemini` | Google's coding CLI. |
-| rtk | `rtk` | Token-optimizing CLI proxy. `rtk gain` shows savings. |
-| uipro | `uipro` | Installs the UI/UX Pro Max skill into AI assistants. |
-| defuddle | `defuddle` | Strips a page to article text — cheap page reads. |
-
-Claude Code config lives in `~/.claude/` (own private repo, not this one).
-
----
-
-## 7. Editors
+## 6. Editors
 
 ### VS Code
 
@@ -264,16 +245,6 @@ brew install --cask visual-studio-code
 
 CLI: `code`
 
-### Google Antigravity
-
-Installed, rarely opened — VS Code covers day-to-day editing.
-
-```bash
-brew install --cask antigravity
-```
-
-CLIs: `agy` (Antigravity.app) and `agy-ide` (the separate Antigravity IDE build, self-installed). Both add their own `PATH` entry to `~/.zshrc`.
-
 ### Obsidian
 
 ```bash
@@ -282,7 +253,7 @@ brew install --cask obsidian
 
 ---
 
-## 8. WordPress
+## 7. WordPress
 
 ### LocalWP
 
@@ -306,7 +277,7 @@ brew install --cask poedit
 
 ---
 
-## 9. Browsers
+## 8. Browsers
 
 ```bash
 brew install --cask google-chrome firefox
@@ -318,7 +289,7 @@ Google Docs/Sheets/Slides are installed as Chrome PWAs (Chrome menu → Cast, sa
 
 ---
 
-## 10. Productivity
+## 9. Productivity
 
 ### Raycast
 
@@ -328,7 +299,7 @@ brew install --cask raycast
 
 Replace Spotlight: System Settings → Keyboard → Keyboard Shortcuts → Spotlight → uncheck Cmd+Space, then set Raycast hotkey to Cmd+Space.
 
-Import settings: double-click `raycast-settings.rayconfig` in this repo.
+Raycast exports its whole config to a `.rayconfig` file — worth doing once yours is set up, so the next machine is one double-click away.
 
 **Window management shortcuts** (Raycast Settings → Extensions → Window Management):
 
@@ -345,7 +316,7 @@ Import settings: double-click `raycast-settings.rayconfig` in this repo.
 
 ---
 
-## 11. Communication
+## 10. Communication
 
 ```bash
 brew install --cask slack discord telegram signal google-chat whatsapp microsoft-teams
@@ -355,7 +326,7 @@ Google Chat requires Rosetta 2 on Apple Silicon. Teams is only there for client 
 
 ---
 
-## 12. File Sync
+## 11. File Sync
 
 ```bash
 brew install --cask google-drive
@@ -363,7 +334,7 @@ brew install --cask google-drive
 
 ---
 
-## 13. Networking & VPN
+## 12. Networking & VPN
 
 ```bash
 brew install --cask protonvpn tailscale-app
@@ -376,7 +347,7 @@ brew install cloudflared
 
 ---
 
-## 14. Utilities
+## 13. Utilities
 
 ```bash
 brew install btop duti ffmpeg sox poppler woff2
@@ -403,7 +374,7 @@ brew install --cask imageoptim hiddenbar stats karabiner-elements mos numi shott
 
 ---
 
-## 15. Media
+## 14. Media
 
 ```bash
 brew install --cask spotify vlc qbittorrent
@@ -411,7 +382,7 @@ brew install --cask spotify vlc qbittorrent
 
 ---
 
-## 16. Design & Office
+## 15. Design & Office
 
 ### GIMP
 
@@ -433,7 +404,7 @@ brew install --cask libreoffice
 
 ---
 
-## 17. FTP
+## 16. FTP
 
 ### FileZilla
 
@@ -441,7 +412,7 @@ No longer packaged by Homebrew (the cask was dropped). Download from [filezilla-
 
 ---
 
-## 18. Cloud CLI
+## 17. Cloud CLI
 
 ### Google Cloud SDK
 
@@ -451,7 +422,7 @@ brew install --cask gcloud-cli
 
 ---
 
-## 19. SSH Keys
+## 18. SSH Keys
 
 Migrating from another machine — copy `~/.ssh/` and `~/.gitconfig`, then fix permissions:
 
@@ -463,7 +434,7 @@ chmod 644 ~/.ssh/*.pub
 
 ---
 
-## 20. macOS Settings
+## 19. macOS Settings
 
 ### Finder
 
@@ -530,7 +501,19 @@ killall Dock
 
 This installs all packages, links config files, and applies macOS defaults. See [`install.sh`](install.sh) for details.
 
-Not covered by the script: FileZilla (no cask) and the Google Docs/Sheets/Slides PWAs. Entertainment apps are out of scope on purpose — this repo provisions a work machine.
+Not covered by the script: FileZilla (no cask any more) and the Google Docs/Sheets/Slides PWAs.
+
+**Scope.** Everything above is generic — a working Mac for development, nothing tied to one person. Out on purpose: entertainment apps, and one person's AI tooling. The repo owner's extras live in [`personal/`](personal/) behind a separate script; delete that directory if you cloned this repo.
+
+### Keeping your own machine-specific bits
+
+Don't edit `configs/.zshrc` for anything that only makes sense on your machine. It ends with:
+
+```zsh
+[[ -r ~/.zshrc.local ]] && source ~/.zshrc.local
+```
+
+Put private functions, extra `PATH` entries and tokens in `~/.zshrc.local`. The tracked config stays clean and pulls keep working.
 
 ---
 
@@ -544,7 +527,7 @@ Not covered by the script: FileZilla (no cask) and the Google Docs/Sheets/Slides
 
 **Per-device scroll direction:** macOS now supports separate Natural Scrolling toggles for Mouse and Trackpad in System Settings.
 
-**Diagnosing key issues:** Karabiner-Elements includes EventViewer to inspect exact keycodes (installed in § 14).
+**Diagnosing key issues:** Karabiner-Elements includes EventViewer to inspect exact keycodes (installed in § 13).
 
 ### Node native module errors
 

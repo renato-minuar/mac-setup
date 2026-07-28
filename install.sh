@@ -28,12 +28,10 @@ brew install \
   composer \
   subversion \
   node \
-  node@22 \
-  node@24 \
+  pnpm \
   go \
   jq \
   ripgrep \
-  rtk \
   btop \
   tmux \
   cloudflared \
@@ -43,8 +41,8 @@ brew install \
   poppler \
   woff2
 
-# node@22 / node@24 are keg-only version pins, selected per-directory by the
-# chpwd hook in configs/.zshrc (reads .node-version / .nvmrc).
+# Projects that pin an older Node major need that keg too — `brew install node@22`
+# and the chpwd hook in configs/.zshrc picks it up from .node-version / .nvmrc.
 
 # --- Casks ---
 echo ""
@@ -56,10 +54,8 @@ brew install --cask \
   firefox \
   raycast \
   visual-studio-code \
-  antigravity \
   local \
   beekeeper-studio \
-  claude \
   slack \
   discord \
   telegram \
@@ -102,20 +98,6 @@ if ! command -v bun &>/dev/null; then
 else
   echo "Bun already installed"
 fi
-
-# --- Global CLIs ---
-# Installed as node globals into the Homebrew node prefix (/opt/homebrew/lib/node_modules).
-echo ""
-echo "Installing global CLIs..."
-npm install -g \
-  @anthropic-ai/claude-code \
-  @google/gemini-cli \
-  pnpm \
-  defuddle-cli \
-  uipro-cli
-
-# Codex CLI lives in the Bun global prefix
-bun install -g @openai/codex
 
 # --- Config files ---
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
@@ -175,10 +157,6 @@ defaults write com.apple.dock wvous-br-corner -int 14
 killall Finder 2>/dev/null || true
 killall Dock 2>/dev/null || true
 
-# --- Raycast settings ---
-echo ""
-echo "To import Raycast settings, double-click: $SCRIPT_DIR/raycast-settings.rayconfig"
-
 # --- Manual steps ---
 echo ""
 echo "=== Manual steps ==="
@@ -187,13 +165,17 @@ echo "                git config --global user.email \"your@email.com\""
 echo "2. Set up GitHub CLI:  gh auth login"
 echo "3. Copy SSH keys from old machine and fix permissions"
 echo "4. Set Chrome as default browser: System Settings > Desktop & Dock"
-echo "5. Set Raycast hotkey to Cmd+Space (disable Spotlight first)"
+echo "5. Set Raycast hotkey to Cmd+Space (disable Spotlight first), then set up"
+echo "   window management shortcuts — see SETUP-GUIDE.md section 9"
 echo "6. Grant Accessibility permissions to Mos and Karabiner-Elements"
 echo "7. Log out and back in for keyboard repeat settings to take effect"
 echo "8. FileZilla has no cask any more — download from https://filezilla-project.org"
 echo "9. Google Docs/Sheets/Slides are Chrome PWAs — install from Chrome (Cast, save, share > Install page as app)"
 echo ""
-echo "Entertainment apps (Steam, GeForce NOW, Synthesia, Playground Sessions) are"
-echo "deliberately out of scope — this repo provisions a work machine."
+echo "Coming from Windows? SETUP-GUIDE.md has a section on the muscle-memory"
+echo "differences (shortcuts, Finder, window snapping, force quit)."
+echo ""
+echo "Out of scope on purpose: entertainment apps and one person's AI tooling."
+echo "The repo owner's extras live in personal/ — delete that folder if you cloned this."
 echo ""
 echo "Done!"

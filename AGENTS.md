@@ -1,6 +1,16 @@
 # macOS Setup
 
-Reference for my Mac configuration. Full setup guide in `SETUP-GUIDE.md`. One-liner description of each app in `APPS.md`.
+Reproducible macOS provisioning. Full guide in `SETUP-GUIDE.md`, one-liner per app in `APPS.md`, switcher notes in `WINDOWS-TO-MAC.md`.
+
+## Scope
+
+This repo provisions a **generic work machine** — the thing to point at when any new Mac arrives, including someone else's. Keep it that way:
+
+- No personal identifiers, project names, or one-person workflows in tracked core files. `configs/.zshrc` sources `~/.zshrc.local` for that; the owner's copy lives in `personal/`.
+- No entertainment apps.
+- No project-specific setup. A project that needs an older Node major declares it in its own `.nvmrc`; the `chpwd` hook in `configs/.zshrc` reads that generically.
+- Use `$HOME`/`$BREW_PREFIX`, never `/Users/<name>` or a hardcoded `/opt/homebrew`.
+- Verify a package name resolves (`brew info --cask <name>`) before adding it — `install.sh` runs under `set -e`, so one dead cask aborts the whole run before any dotfile gets linked.
 
 ## Software Stack
 
@@ -9,13 +19,11 @@ Reference for my Mac configuration. Full setup guide in `SETUP-GUIDE.md`. One-li
 | Package manager | Homebrew |
 | Terminal | Kitty + Fira Code + tmux |
 | Shell | zsh + syntax-highlighting + autosuggestions + fzf + zoxide + Powerlevel10k + bash 5 |
-| Editors | VS Code (primary), Google Antigravity (rarely) |
-| Notes | Obsidian |
+| Editors | VS Code, Obsidian |
 | Launcher | Raycast (Cmd+Space) |
 | Browsers | Chrome (default), Firefox |
-| AI CLIs | Claude Code, Codex, Gemini CLI, rtk, uipro, defuddle |
 | WordPress | LocalWP, WP-CLI, Composer, Subversion, Poedit |
-| JavaScript | Bun (default), Node.js + node@22/@24 pins, pnpm |
+| JavaScript | Bun (default), Node.js + per-directory pins, pnpm |
 | Other languages | Go, PHP |
 | Game dev | Godot |
 | Database | Beekeeper Studio |
@@ -29,18 +37,9 @@ Reference for my Mac configuration. Full setup guide in `SETUP-GUIDE.md`. One-li
 | Cloud CLI | gcloud-cli |
 | Utilities | btop, jq, ripgrep, duti, ffmpeg, sox, poppler, woff2, ImageOptim, HiddenBar, Stats, Karabiner-Elements, Mos, Numi, Shottr |
 
-## Scope
+## Conventions
 
-This repo provisions a **work machine** — the thing to point at when a new Mac arrives. Out of scope: entertainment apps (Steam, GeForce NOW, Synthesia, Playground Sessions) and anything project-specific. Per-project tooling belongs in the project (e.g. a Node major pin goes in that repo's `.nvmrc`, which the `chpwd` hook in `configs/.zshrc` reads generically).
-
-## Preferences
-
-- No "Co-Authored-By: Claude" in git commits
-- Homebrew for all installs, except where no cask exists (FileZilla) or the tool ships as a node/bun global (AI CLIs, pnpm)
-- No subscriptions (free or one-time purchase only)
-- No Apple lock-in (no iCloud, Apple Notes, etc.)
-- Google Drive instead of iCloud
-- Dark mode, dock always visible (no auto-hide), tap to click
-- Finder: list view, home folder default, search current folder
-
-
+- Homebrew for everything installable that way. Exceptions get a manual step printed by `install.sh` (currently FileZilla) — never a silent gap.
+- Dotfiles are symlinked from `configs/`, not copied, so edits are version-controlled immediately.
+- `install.sh`, `SETUP-GUIDE.md` and `APPS.md` must agree. Adding a tool means touching all three.
+- Machine state is the source of truth for what belongs here; docs claiming something untrue is a bug.
