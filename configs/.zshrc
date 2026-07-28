@@ -134,18 +134,53 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # Added by Antigravity IDE
 export PATH="/Users/benne-air/.antigravity-ide/antigravity-ide/bin:$PATH"
 
-# atrio monorepo pins node 22 (better-sqlite3 ABI breaks under default node 26).
-# Auto-prepend the node@22 keg inside ~/projects/atrio, drop it on leaving.
-_atrio_node22_path() {
-  local keg="/opt/homebrew/opt/node@22/bin"
-  [[ -d "$keg" ]] || return 0
-  case "$PWD/" in
-    "$HOME/projects/atrio/"*)
-      [[ ":$PATH:" == *":$keg:"* ]] || export PATH="$keg:$PATH" ;;
-    *)
-      [[ ":$PATH:" == *":$keg:"* ]] && export PATH="${PATH//$keg:/}" ;;
-  esac
+# Per-directory Node version pin. Some projects need a specific Node major
+# because a native module's prebuilt ABI doesn't match the default keg.
+# Resolution order, first hit wins:
+#   1. nearest .node-version or .nvmrc walking up from $PWD (project-committed)
+#   2. ~/.config/node-pins — untracked "<path> <major>" lines, for repos that
+#      carry neither file
+# The matching keg (/opt/homebrew/opt/node@<major>/bin) is prepended to PATH;
+# leaving the directory removes it. No pin = default node.
+_node_pin_version() {
+  local dir="$PWD" f v
+  while [[ -n "$dir" && "$dir" != "/" ]]; do
+    for f in "$dir/.node-version" "$dir/.nvmrc"; do
+      [[ -r "$f" ]] || continue
+      v="$(<"$f")"
+      v="${v//[^0-9.]/}"
+      [[ -n "$v" ]] && { print -r -- "${v%%.*}"; return 0 }
+    done
+    dir="${dir:h}"
+  done
+
+  local pins="${XDG_CONFIG_HOME:-$HOME/.config}/node-pins" pat major
+  [[ -r "$pins" ]] || return 1
+  while IFS=$' \t' read -r pat major; do
+    [[ -z "$pat" || "$pat" == \#* || -z "$major" ]] && continue
+    pat="${pat/#\~/$HOME}"
+    case "$PWD/" in
+      "${pat%/}"/*) print -r -- "$major"; return 0 ;;
+    esac
+  done < "$pins"
+  return 1
+}
+
+_node_pin_path() {
+  local -a kept=()
+  local p
+  for p in "${(@s/:/)PATH}"; do
+    [[ "$p" == /opt/homebrew/opt/node@*/bin ]] || kept+=("$p")
+  done
+  PATH="${(j/:/)kept}"
+
+  local major keg
+  if major="$(_node_pin_version)"; then
+    keg="/opt/homebrew/opt/node@${major}/bin"
+    [[ -d "$keg" ]] && PATH="$keg:$PATH"
+  fi
+  export PATH
 }
 autoload -U add-zsh-hook
-add-zsh-hook chpwd _atrio_node22_path
-_atrio_node22_path
+add-zsh-hook chpwd _node_pin_path
+_node_pin_path

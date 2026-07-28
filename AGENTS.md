@@ -17,6 +17,7 @@ Reference for my Mac configuration. Full setup guide in `SETUP-GUIDE.md`. One-li
 | WordPress | LocalWP, WP-CLI, Composer, Subversion, Poedit |
 | JavaScript | Bun (default), Node.js + node@22/@24 pins, pnpm |
 | Other languages | Go, PHP |
+| Game dev | Godot |
 | Database | Beekeeper Studio |
 | Containers | Docker Desktop |
 | Communication | Slack, Discord, Telegram, Signal, Google Chat, WhatsApp, Microsoft Teams |
@@ -24,15 +25,18 @@ Reference for my Mac configuration. Full setup guide in `SETUP-GUIDE.md`. One-li
 | Media | Spotify, VLC, qBittorrent |
 | Networking | ProtonVPN, Tailscale, cloudflared |
 | Design & Office | GIMP, Inkscape, LibreOffice |
-| Games & Music | Godot, Steam, GeForce NOW, Synthesia, Playground Sessions |
 | FTP | FileZilla (manual install — no cask) |
 | Cloud CLI | gcloud-cli |
 | Utilities | btop, jq, ripgrep, duti, ffmpeg, sox, poppler, woff2, ImageOptim, HiddenBar, Stats, Karabiner-Elements, Mos, Numi, Shottr |
 
+## Scope
+
+This repo provisions a **work machine** — the thing to point at when a new Mac arrives. Out of scope: entertainment apps (Steam, GeForce NOW, Synthesia, Playground Sessions) and anything project-specific. Per-project tooling belongs in the project (e.g. a Node major pin goes in that repo's `.nvmrc`, which the `chpwd` hook in `configs/.zshrc` reads generically).
+
 ## Preferences
 
 - No "Co-Authored-By: Claude" in git commits
-- Homebrew for all installs, except where no package exists (FileZilla, Playground Sessions) or the tool ships as a node/bun global (AI CLIs, pnpm)
+- Homebrew for all installs, except where no cask exists (FileZilla) or the tool ships as a node/bun global (AI CLIs, pnpm)
 - No subscriptions (free or one-time purchase only)
 - No Apple lock-in (no iCloud, Apple Notes, etc.)
 - Google Drive instead of iCloud

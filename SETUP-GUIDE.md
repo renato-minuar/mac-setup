@@ -109,7 +109,7 @@ Highlights:
 - syntax highlighting, autosuggestions, fzf, zoxide, Powerlevel10k
 - Bun install prefix + completions
 - Antigravity and Antigravity IDE PATH entries
-- `_atrio_node22_path` — `chpwd` hook that prepends the `node@22` keg inside `~/projects/atrio` and drops it on leaving (see § 5)
+- `_node_pin_path` — `chpwd` hook that switches Node major per directory (see § 5)
 
 ---
 
@@ -157,9 +157,19 @@ brew install composer
 brew install node node@22 node@24
 ```
 
-`node` is the default keg (currently 26.x). `node@22` and `node@24` are keg-only and exist for projects whose native modules break on the default: `atrio` pins 22 because `better-sqlite3`'s prebuilt ABI doesn't match Node 26.
+`node` is the default keg (currently 26.x). `node@22` and `node@24` are keg-only, for projects whose native modules ship prebuilt binaries against an older ABI (`better-sqlite3` being the usual offender).
 
-The pin is applied per-directory by a `chpwd` hook in [`configs/.zshrc`](configs/.zshrc) — entering `~/projects/atrio` prepends `/opt/homebrew/opt/node@22/bin` to `PATH`, leaving removes it. The hook is a silent no-op if the keg is missing, so `node@22` must actually be installed.
+The `_node_pin_path` hook in [`configs/.zshrc`](configs/.zshrc) picks the major per directory on every `cd`:
+
+1. nearest `.node-version` or `.nvmrc` walking up from `$PWD` — nothing to configure, the project already declares it
+2. `~/.config/node-pins` — untracked `<path> <major>` lines, for repos carrying neither file
+
+A match prepends `/opt/homebrew/opt/node@<major>/bin` to `PATH`; leaving strips it. No match means the default keg. Install the majors your projects actually pin — the hook is a silent no-op when the keg is missing.
+
+```bash
+# example ~/.config/node-pins
+~/work/legacy-app   22
+```
 
 ### Bun
 
@@ -182,6 +192,16 @@ Only for projects whose lockfile requires it.
 ```bash
 brew install go
 ```
+
+Compiler, module manager, formatter and test runner in one binary — `go build`, `go test ./...`, `go fmt`.
+
+### Godot
+
+```bash
+brew install --cask godot
+```
+
+Game engine. Ships its own script editor, so no toolchain to configure.
 
 ### jq
 
@@ -413,19 +433,7 @@ brew install --cask libreoffice
 
 ---
 
-## 17. Games & Music
-
-```bash
-brew install --cask godot steam nvidia-geforce-now synthesia
-```
-
-**Godot:** game engine. **GeForce NOW:** cloud streaming, no local GPU needed. **Synthesia:** piano practice with falling-note MIDI.
-
-**Playground Sessions for Piano** has no cask — download from [playgroundsessions.com](https://playgroundsessions.com).
-
----
-
-## 18. FTP
+## 17. FTP
 
 ### FileZilla
 
@@ -433,7 +441,7 @@ No longer packaged by Homebrew (the cask was dropped). Download from [filezilla-
 
 ---
 
-## 19. Cloud CLI
+## 18. Cloud CLI
 
 ### Google Cloud SDK
 
@@ -443,7 +451,7 @@ brew install --cask gcloud-cli
 
 ---
 
-## 20. SSH Keys
+## 19. SSH Keys
 
 Migrating from another machine — copy `~/.ssh/` and `~/.gitconfig`, then fix permissions:
 
@@ -455,7 +463,7 @@ chmod 644 ~/.ssh/*.pub
 
 ---
 
-## 21. macOS Settings
+## 20. macOS Settings
 
 ### Finder
 
@@ -522,7 +530,7 @@ killall Dock
 
 This installs all packages, links config files, and applies macOS defaults. See [`install.sh`](install.sh) for details.
 
-Not covered by the script (no Homebrew package): FileZilla, Playground Sessions, Google Docs/Sheets/Slides PWAs.
+Not covered by the script: FileZilla (no cask) and the Google Docs/Sheets/Slides PWAs. Entertainment apps are out of scope on purpose — this repo provisions a work machine.
 
 ---
 
@@ -540,4 +548,4 @@ Not covered by the script (no Homebrew package): FileZilla, Playground Sessions,
 
 ### Node native module errors
 
-`NODE_MODULE_VERSION` mismatch on `better-sqlite3` or similar means the wrong Node major is active. Check `node -v` and confirm `/opt/homebrew/opt/node@22/bin` is on `PATH` inside `~/projects/atrio` — the `chpwd` hook silently does nothing if the `node@22` keg was never installed (`brew install node@22`).
+`NODE_MODULE_VERSION` mismatch on `better-sqlite3` or similar means the wrong Node major is active. Check `node -v` against the project's `.nvmrc`/`.node-version`, then confirm the keg exists — the `chpwd` hook (§ 5) silently does nothing when `node@<major>` was never installed. `_node_pin_version` prints the major it resolved for the current directory.

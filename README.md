@@ -2,6 +2,8 @@
 
 macOS configuration for productivity, terminal workflows, and web development — without Apple's ecosystem lock-in.
 
+Scope is a **work machine**: what to run when a new Mac arrives. Entertainment apps and project-specific tooling stay out.
+
 ## Quick Start
 
 ```bash
@@ -35,12 +37,12 @@ Installs all packages, links config files, applies macOS defaults. Follow the ma
 | WordPress | LocalWP, WP-CLI, Composer, Subversion, Poedit |
 | JavaScript | Bun, Node.js (+ node@22/@24 pins), pnpm |
 | Other languages | Go, PHP |
+| Game dev | Godot |
 | Containers | Docker Desktop |
 | Database | Beekeeper Studio |
 | File sync | Google Drive |
 | Communication | Slack, Discord, Telegram, Signal, Google Chat, WhatsApp, Microsoft Teams |
 | Design & Office | GIMP, Inkscape, LibreOffice |
-| Games & Music | Godot, Steam, GeForce NOW, Synthesia, Playground Sessions |
 | FTP | FileZilla (manual install) |
 | Cloud CLI | gcloud-cli |
 | Utilities | btop, jq, ripgrep, duti, ffmpeg, sox, poppler, woff2, Stats, HiddenBar, ImageOptim, Karabiner-Elements, Mos, Numi, Shottr |

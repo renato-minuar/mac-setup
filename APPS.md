@@ -30,10 +30,11 @@ One-liner reference for everything in [`install.sh`](install.sh). Install comman
 - **Composer** — PHP dependency manager.
 - **Subversion (`svn`)** — Needed for WordPress.org plugin/theme repos, which are SVN-backed.
 - **Node.js** — JavaScript runtime (default keg, currently 26.x).
-- **node@22 / node@24** — Keg-only version pins for projects whose native modules break on the default Node. `atrio` pins 22 (`better-sqlite3` ABI) — see the `chpwd` hook in [`configs/.zshrc`](configs/.zshrc).
+- **node@22 / node@24** — Keg-only version pins for projects whose native modules break on the default Node. Selected per-directory from `.node-version`/`.nvmrc` by a `chpwd` hook in [`configs/.zshrc`](configs/.zshrc).
 - **Bun** — Fast JavaScript runtime and package manager. Default for all JS work.
 - **pnpm** — Used only where a project's lockfile demands it.
-- **Go** — Go toolchain.
+- **Go** — Go toolchain (`go`). Compiler, module manager, test runner in one binary.
+- **Godot** — Open-source game engine.
 - **jq** — Command-line JSON processor.
 - **ripgrep (`rg`)** — Recursive regex search. Respects `.gitignore`, orders of magnitude faster than `grep -r`.
 - **Docker Desktop** — Containers and Compose, with the `docker` CLI.
@@ -45,8 +46,8 @@ One-liner reference for everything in [`install.sh`](install.sh). Install comman
 - **Codex CLI (`codex`)** — OpenAI's coding CLI. Used as a second-opinion reviewer via the `codex-partner` MCP server.
 - **Gemini CLI (`gemini`)** — Google's coding CLI.
 - **rtk** — Token-optimizing CLI proxy. Wraps `git`/build commands to cut LLM context cost; `rtk gain` reports savings.
-- **uipro (`uipro-cli`)** — Installs the UI/UX Pro Max skill into AI coding assistants.
-- **defuddle (`defuddle-cli`)** — Strips a web page to its article text. Cheap page reads for agents.
+- **uipro (`uipro-cli`)** — Installer for the UI/UX Pro Max skill (styles, palettes, font pairings). Run once per assistant; the skill itself lives in `~/.claude/skills`.
+- **defuddle (`defuddle-cli`)** — Strips a web page to its article text (same extractor as Obsidian Web Clipper). Required by the `obsidian-skills` plugin's defuddle skill; also cheap page reads for agents.
 
 ## Editors
 
@@ -117,14 +118,6 @@ One-liner reference for everything in [`install.sh`](install.sh). Install comman
 - **LibreOffice** — Office suite (Word/Excel/PowerPoint-equivalent).
 - **Poedit** — Gettext `.po`/`.mo` translation editor for WordPress themes and plugins.
 
-## Games & Music
-
-- **Godot** — Open-source game engine.
-- **Steam** — Game library.
-- **NVIDIA GeForce NOW** — Cloud game streaming, no local GPU needed.
-- **Synthesia** — Piano learning with falling-note MIDI playback.
-- **Playground Sessions for Piano** — Piano course app. No Homebrew cask — manual download.
-
 ## FTP
 
 - **FileZilla** — FTP/SFTP client. Dropped from homebrew-cask; download from [filezilla-project.org](https://filezilla-project.org).
@@ -132,3 +125,7 @@ One-liner reference for everything in [`install.sh`](install.sh). Install comman
 ## Cloud CLI
 
 - **Google Cloud SDK (`gcloud`)** — Google Cloud command-line interface.
+
+## Out of scope
+
+Entertainment apps (Steam, GeForce NOW, Synthesia, Playground Sessions) and anything tied to a single project are deliberately absent. This repo provisions a work machine — install the rest by hand.
