@@ -10,14 +10,15 @@ cd mac-setup
 ./install.sh
 ```
 
-Installs all packages, copies config files, applies macOS defaults. Follow the manual steps printed at the end.
+Installs all packages, links config files, applies macOS defaults. Follow the manual steps printed at the end.
 
 ## What's Inside
 
 - **[install.sh](install.sh)** — Automated setup script
-- **[configs/](configs/)** — Dotfiles (zshrc, tmux, kitty, p10k)
+- **[configs/](configs/)** — Dotfiles (zshrc, tmux, kitty, p10k), symlinked into `~` by the installer
 - **[SETUP-GUIDE.md](SETUP-GUIDE.md)** — Detailed reference for each tool and setting
 - **[APPS.md](APPS.md)** — One-liner description of every app and CLI tool installed
+- **[notes/](notes/)** — Scratch notes for one-off machine setups (e.g. KVM)
 - **[raycast-settings.rayconfig](raycast-settings.rayconfig)** — Raycast settings export (double-click to import)
 
 ## Stack
@@ -25,22 +26,25 @@ Installs all packages, copies config files, applies macOS defaults. Follow the m
 | Category | Tools |
 |----------|-------|
 | Terminal | Kitty + Fira Code + tmux |
-| Shell | zsh + Powerlevel10k + fzf + zoxide + syntax-highlighting + autosuggestions |
-| Editors | VS Code, Google Antigravity |
+| Shell | zsh + Powerlevel10k + fzf + zoxide + syntax-highlighting + autosuggestions + bash 5 |
+| Editors | VS Code (primary), Google Antigravity |
 | Notes | Obsidian |
 | Launcher | Raycast |
 | Browsers | Chrome, Firefox |
-| WordPress | LocalWP, WP-CLI, Composer |
-| JavaScript | Node.js, Bun |
+| AI CLIs | Claude Code, Codex, Gemini CLI, rtk, uipro, defuddle |
+| WordPress | LocalWP, WP-CLI, Composer, Subversion, Poedit |
+| JavaScript | Bun, Node.js (+ node@22/@24 pins), pnpm |
+| Other languages | Go, PHP |
 | Containers | Docker Desktop |
 | Database | Beekeeper Studio |
 | File sync | Google Drive |
-| Communication | Slack, Discord, Telegram, Google Chat, WhatsApp |
+| Communication | Slack, Discord, Telegram, Signal, Google Chat, WhatsApp, Microsoft Teams |
 | Design & Office | GIMP, Inkscape, LibreOffice |
-| FTP | FileZilla |
+| Games & Music | Godot, Steam, GeForce NOW, Synthesia, Playground Sessions |
+| FTP | FileZilla (manual install) |
 | Cloud CLI | gcloud-cli |
-| Utilities | btop, jq, Stats, HiddenBar, ImageOptim, Karabiner-Elements, Mos, Numi, Shottr, cloudflared |
+| Utilities | btop, jq, ripgrep, duti, ffmpeg, sox, poppler, woff2, Stats, HiddenBar, ImageOptim, Karabiner-Elements, Mos, Numi, Shottr |
+| Networking | ProtonVPN, Tailscale, cloudflared |
 | Media | Spotify, VLC, qBittorrent |
-| VPN | ProtonVPN |
 
 See [APPS.md](APPS.md) for a one-line description of each.

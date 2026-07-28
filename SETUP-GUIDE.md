@@ -74,7 +74,7 @@ tmux split-window -h
 tmux split-window -v
 tmux send-keys -t dev:1.1 "claude" Enter
 tmux send-keys -t dev:1.2 "claude" Enter
-tmux send-keys -t dev:1.3 "npm run dev" Enter
+tmux send-keys -t dev:1.3 "bun run dev" Enter
 tmux attach -t dev
 ```
 
@@ -85,10 +85,12 @@ tmux attach -t dev
 ### Packages
 
 ```bash
-brew install zsh-syntax-highlighting zsh-autosuggestions fzf powerlevel10k zoxide
+brew install zsh-syntax-highlighting zsh-autosuggestions fzf powerlevel10k zoxide bash
 ```
 
 `zoxide` provides smarter `cd` — `z <partial-name>` jumps to any directory you've visited before, ranked by frecency.
+
+`bash` is Bash 5.x. macOS still ships 3.2 (2007, GPLv2), so any script using associative arrays or `${var^^}` needs the Homebrew build.
 
 ### Powerlevel10k Configuration
 
@@ -100,7 +102,14 @@ Sourced from `~/.zshrc` via `source $(brew --prefix)/share/powerlevel10k/powerle
 
 Config: [`configs/.zshrc`](configs/.zshrc) → `~/.zshrc`
 
-Highlights: random dark background per Kitty split, `claudio` function (Claude Code launcher with tmux integration), syntax highlighting, autosuggestions, fzf, zoxide, Powerlevel10k, Bun.
+Highlights:
+
+- Random dark background per Kitty split
+- `claudio` — Claude Code launcher with tmux integration (`-t` tmux, `-s` safe mode, `-c` clean stale `c-*` sessions, `-n` custom name)
+- syntax highlighting, autosuggestions, fzf, zoxide, Powerlevel10k
+- Bun install prefix + completions
+- Antigravity and Antigravity IDE PATH entries
+- `_atrio_node22_path` — `chpwd` hook that prepends the `node@22` keg inside `~/projects/atrio` and drops it on leaving (see § 5)
 
 ---
 
@@ -128,17 +137,29 @@ brew install wp-cli
 
 PHP installs automatically as a dependency.
 
+### Subversion
+
+```bash
+brew install subversion
+```
+
+WordPress.org plugin and theme repos are SVN-backed — releasing to them needs `svn`.
+
 ### Composer
 
 ```bash
 brew install composer
 ```
 
-### Node.js
+### Node.js and version pins
 
 ```bash
-brew install node
+brew install node node@22 node@24
 ```
+
+`node` is the default keg (currently 26.x). `node@22` and `node@24` are keg-only and exist for projects whose native modules break on the default: `atrio` pins 22 because `better-sqlite3`'s prebuilt ABI doesn't match Node 26.
+
+The pin is applied per-directory by a `chpwd` hook in [`configs/.zshrc`](configs/.zshrc) — entering `~/projects/atrio` prepends `/opt/homebrew/opt/node@22/bin` to `PATH`, leaving removes it. The hook is a silent no-op if the keg is missing, so `node@22` must actually be installed.
 
 ### Bun
 
@@ -146,11 +167,35 @@ brew install node
 curl -fsSL https://bun.sh/install | bash
 ```
 
+Default JS runtime and package manager.
+
+### pnpm
+
+```bash
+npm install -g pnpm
+```
+
+Only for projects whose lockfile requires it.
+
+### Go
+
+```bash
+brew install go
+```
+
 ### jq
 
 ```bash
 brew install jq
 ```
+
+### ripgrep
+
+```bash
+brew install ripgrep
+```
+
+`rg` — respects `.gitignore`, far faster than `grep -r`. Claude Code uses it under the hood.
 
 ### Docker Desktop
 
@@ -162,9 +207,36 @@ brew install --cask docker-desktop
 
 ---
 
-## 6. Editors
+## 6. AI CLIs
+
+Node globals land in the Homebrew node prefix (`/opt/homebrew/lib/node_modules`), Bun globals in `~/.bun`.
+
+```bash
+npm install -g @anthropic-ai/claude-code @google/gemini-cli defuddle-cli uipro-cli
+bun install -g @openai/codex
+brew install rtk
+brew install --cask claude
+```
+
+| Tool | Command | Notes |
+|------|---------|-------|
+| Claude Code | `claude` | Launch via `claudio` (see § 4). `claude --chrome` for browser control. |
+| Claude desktop | — | Cask `claude`, for non-terminal chat. |
+| Codex CLI | `codex` | Second-opinion reviewer, driven by the `codex-partner` MCP server. |
+| Gemini CLI | `gemini` | Google's coding CLI. |
+| rtk | `rtk` | Token-optimizing CLI proxy. `rtk gain` shows savings. |
+| uipro | `uipro` | Installs the UI/UX Pro Max skill into AI assistants. |
+| defuddle | `defuddle` | Strips a page to article text — cheap page reads. |
+
+Claude Code config lives in `~/.claude/` (own private repo, not this one).
+
+---
+
+## 7. Editors
 
 ### VS Code
+
+Primary editor.
 
 ```bash
 brew install --cask visual-studio-code
@@ -174,11 +246,13 @@ CLI: `code`
 
 ### Google Antigravity
 
+Installed, rarely opened — VS Code covers day-to-day editing.
+
 ```bash
 brew install --cask antigravity
 ```
 
-CLI: `agy`
+CLIs: `agy` (Antigravity.app) and `agy-ide` (the separate Antigravity IDE build, self-installed). Both add their own `PATH` entry to `~/.zshrc`.
 
 ### Obsidian
 
@@ -188,7 +262,7 @@ brew install --cask obsidian
 
 ---
 
-## 7. WordPress
+## 8. WordPress
 
 ### LocalWP
 
@@ -202,9 +276,17 @@ brew install --cask local
 brew install --cask beekeeper-studio
 ```
 
+### Poedit
+
+Translation editor for `.po`/`.mo` files.
+
+```bash
+brew install --cask poedit
+```
+
 ---
 
-## 8. Browsers
+## 9. Browsers
 
 ```bash
 brew install --cask google-chrome firefox
@@ -212,9 +294,11 @@ brew install --cask google-chrome firefox
 
 Set Chrome as default: System Settings → Desktop & Dock → Default web browser.
 
+Google Docs/Sheets/Slides are installed as Chrome PWAs (Chrome menu → Cast, save, share → Install page as app), not native apps.
+
 ---
 
-## 9. Productivity
+## 10. Productivity
 
 ### Raycast
 
@@ -241,17 +325,17 @@ Import settings: double-click `raycast-settings.rayconfig` in this repo.
 
 ---
 
-## 10. Communication
+## 11. Communication
 
 ```bash
-brew install --cask slack discord telegram google-chat whatsapp
+brew install --cask slack discord telegram signal google-chat whatsapp microsoft-teams
 ```
 
-Google Chat requires Rosetta 2 on Apple Silicon.
+Google Chat requires Rosetta 2 on Apple Silicon. Teams is only there for client meetings.
 
 ---
 
-## 11. File Sync
+## 12. File Sync
 
 ```bash
 brew install --cask google-drive
@@ -259,20 +343,33 @@ brew install --cask google-drive
 
 ---
 
-## 12. VPN
+## 13. Networking & VPN
 
 ```bash
-brew install --cask protonvpn
+brew install --cask protonvpn tailscale-app
+brew install cloudflared
 ```
+
+**Tailscale:** mesh VPN and the access path to the VPS boxes, including Tailscale SSH. Cask was renamed from `tailscale` to `tailscale-app` (the `tailscale` formula is the CLI-only daemon).
+
+**cloudflared:** Cloudflare Tunnel client for exposing a local port on a real hostname.
 
 ---
 
-## 13. Utilities
+## 14. Utilities
 
 ```bash
-brew install btop cloudflared
+brew install btop duti ffmpeg sox poppler woff2
 brew install --cask imageoptim hiddenbar stats karabiner-elements mos numi shottr
 ```
+
+**duti:** sets default apps per file type from the shell — `duti -x html` prints what currently owns `.html`.
+
+**ffmpeg / sox:** video and audio conversion, trimming, normalizing.
+
+**poppler:** `pdftotext`, `pdfimages`, `pdftoppm` for pulling text and images out of PDFs.
+
+**woff2:** `woff2_compress font.ttf` for web fonts.
 
 **Stats clock format:** `EEE HH:mm dd-MM` → `Tue 17:37 31-12`
 
@@ -286,7 +383,7 @@ brew install --cask imageoptim hiddenbar stats karabiner-elements mos numi shott
 
 ---
 
-## 14. Media
+## 15. Media
 
 ```bash
 brew install --cask spotify vlc qbittorrent
@@ -294,7 +391,7 @@ brew install --cask spotify vlc qbittorrent
 
 ---
 
-## 15. Design & Office
+## 16. Design & Office
 
 ### GIMP
 
@@ -316,17 +413,27 @@ brew install --cask libreoffice
 
 ---
 
-## 16. FTP
-
-### FileZilla
+## 17. Games & Music
 
 ```bash
-brew install --cask filezilla
+brew install --cask godot steam nvidia-geforce-now synthesia
 ```
+
+**Godot:** game engine. **GeForce NOW:** cloud streaming, no local GPU needed. **Synthesia:** piano practice with falling-note MIDI.
+
+**Playground Sessions for Piano** has no cask — download from [playgroundsessions.com](https://playgroundsessions.com).
 
 ---
 
-## 17. Cloud CLI
+## 18. FTP
+
+### FileZilla
+
+No longer packaged by Homebrew (the cask was dropped). Download from [filezilla-project.org](https://filezilla-project.org) and skip the bundled offers during install.
+
+---
+
+## 19. Cloud CLI
 
 ### Google Cloud SDK
 
@@ -336,7 +443,7 @@ brew install --cask gcloud-cli
 
 ---
 
-## 18. SSH Keys
+## 20. SSH Keys
 
 Migrating from another machine — copy `~/.ssh/` and `~/.gitconfig`, then fix permissions:
 
@@ -348,7 +455,7 @@ chmod 644 ~/.ssh/*.pub
 
 ---
 
-## 19. macOS Settings
+## 21. macOS Settings
 
 ### Finder
 
@@ -367,9 +474,12 @@ Toggle hidden files: `Cmd + Shift + .`
 
 ### Dock
 
+Always visible — no auto-hide.
+
 ```bash
 defaults write com.apple.dock tilesize -int 33
 defaults write com.apple.dock show-recents -bool false
+defaults write com.apple.dock autohide -bool false
 killall Dock
 ```
 
@@ -410,7 +520,9 @@ killall Dock
 ./install.sh
 ```
 
-This installs all packages, copies config files, and applies macOS defaults. See [`install.sh`](install.sh) for details.
+This installs all packages, links config files, and applies macOS defaults. See [`install.sh`](install.sh) for details.
+
+Not covered by the script (no Homebrew package): FileZilla, Playground Sessions, Google Docs/Sheets/Slides PWAs.
 
 ---
 
@@ -424,4 +536,8 @@ This installs all packages, copies config files, and applies macOS defaults. See
 
 **Per-device scroll direction:** macOS now supports separate Natural Scrolling toggles for Mouse and Trackpad in System Settings.
 
-**Diagnosing key issues:** Karabiner-Elements includes EventViewer to inspect exact keycodes (installed in § 13).
+**Diagnosing key issues:** Karabiner-Elements includes EventViewer to inspect exact keycodes (installed in § 14).
+
+### Node native module errors
+
+`NODE_MODULE_VERSION` mismatch on `better-sqlite3` or similar means the wrong Node major is active. Check `node -v` and confirm `/opt/homebrew/opt/node@22/bin` is on `PATH` inside `~/projects/atrio` — the `chpwd` hook silently does nothing if the `node@22` keg was never installed (`brew install node@22`).

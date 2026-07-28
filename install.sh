@@ -22,14 +22,29 @@ brew install \
   fzf \
   powerlevel10k \
   zoxide \
+  bash \
   gh \
   wp-cli \
   composer \
+  subversion \
   node \
+  node@22 \
+  node@24 \
+  go \
   jq \
+  ripgrep \
+  rtk \
   btop \
   tmux \
-  cloudflared
+  cloudflared \
+  duti \
+  ffmpeg \
+  sox \
+  poppler \
+  woff2
+
+# node@22 / node@24 are keg-only version pins for projects whose native modules
+# break on the default node (atrio pins 22 — see the chpwd hook in configs/.zshrc).
 
 # --- Casks ---
 echo ""
@@ -44,12 +59,16 @@ brew install --cask \
   antigravity \
   local \
   beekeeper-studio \
+  claude \
   slack \
   discord \
   telegram \
+  signal \
   google-chat \
   whatsapp \
+  microsoft-teams \
   protonvpn \
+  tailscale-app \
   spotify \
   vlc \
   qbittorrent \
@@ -63,7 +82,11 @@ brew install --cask \
   gimp \
   inkscape \
   libreoffice \
-  filezilla \
+  poedit \
+  godot \
+  steam \
+  nvidia-geforce-now \
+  synthesia \
   gcloud-cli \
   obsidian
 
@@ -77,9 +100,25 @@ if ! command -v bun &>/dev/null; then
   echo ""
   echo "Installing Bun..."
   curl -fsSL https://bun.sh/install | bash
+  export BUN_INSTALL="$HOME/.bun"
+  export PATH="$BUN_INSTALL/bin:$PATH"
 else
   echo "Bun already installed"
 fi
+
+# --- Global CLIs ---
+# Installed as node globals into the Homebrew node prefix (/opt/homebrew/lib/node_modules).
+echo ""
+echo "Installing global CLIs..."
+npm install -g \
+  @anthropic-ai/claude-code \
+  @google/gemini-cli \
+  pnpm \
+  defuddle-cli \
+  uipro-cli
+
+# Codex CLI lives in the Bun global prefix
+bun install -g @openai/codex
 
 # --- Config files ---
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
@@ -117,9 +156,10 @@ defaults write com.apple.finder NewWindowTarget -string "PfHm"
 defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
 defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 
-# Dock
+# Dock (always visible — no auto-hide)
 defaults write com.apple.dock tilesize -int 33
 defaults write com.apple.dock show-recents -bool false
+defaults write com.apple.dock autohide -bool false
 
 # Keyboard
 defaults write NSGlobalDomain KeyRepeat -int 5
@@ -153,5 +193,9 @@ echo "4. Set Chrome as default browser: System Settings > Desktop & Dock"
 echo "5. Set Raycast hotkey to Cmd+Space (disable Spotlight first)"
 echo "6. Grant Accessibility permissions to Mos and Karabiner-Elements"
 echo "7. Log out and back in for keyboard repeat settings to take effect"
+echo "8. No Homebrew cask — download manually:"
+echo "     FileZilla (dropped from homebrew-cask): https://filezilla-project.org"
+echo "     Playground Sessions for Piano:          https://playgroundsessions.com"
+echo "9. Google Docs/Sheets/Slides are Chrome PWAs — install from Chrome (Cast, save, share > Install page as app)"
 echo ""
 echo "Done!"
