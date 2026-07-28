@@ -28,7 +28,10 @@ brew install \
   composer \
   subversion \
   node \
+  node@22 \
+  node@24 \
   pnpm \
+  rtk \
   go \
   jq \
   ripgrep \
@@ -41,8 +44,8 @@ brew install \
   poppler \
   woff2
 
-# Projects that pin an older Node major need that keg too — `brew install node@22`
-# and the chpwd hook in configs/.zshrc picks it up from .node-version / .nvmrc.
+# node@22 / node@24 are keg-only. The chpwd hook in configs/.zshrc activates one
+# per directory, reading the project's .node-version / .nvmrc.
 
 # --- Casks ---
 echo ""
@@ -54,6 +57,8 @@ brew install --cask \
   firefox \
   raycast \
   visual-studio-code \
+  antigravity \
+  claude \
   local \
   beekeeper-studio \
   slack \
@@ -98,6 +103,18 @@ if ! command -v bun &>/dev/null; then
 else
   echo "Bun already installed"
 fi
+
+# --- AI CLIs ---
+# Node globals land in the Homebrew node prefix, Bun globals in ~/.bun.
+echo ""
+echo "Installing AI CLIs..."
+npm install -g \
+  @anthropic-ai/claude-code \
+  @google/gemini-cli \
+  defuddle-cli \
+  uipro-cli
+
+bun install -g @openai/codex
 
 # --- Config files ---
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
@@ -157,6 +174,10 @@ defaults write com.apple.dock wvous-br-corner -int 14
 killall Finder 2>/dev/null || true
 killall Dock 2>/dev/null || true
 
+# --- Raycast settings ---
+echo ""
+echo "To import Raycast settings, double-click: $SCRIPT_DIR/raycast-settings.rayconfig"
+
 # --- Manual steps ---
 echo ""
 echo "=== Manual steps ==="
@@ -172,10 +193,9 @@ echo "7. Log out and back in for keyboard repeat settings to take effect"
 echo "8. FileZilla has no cask any more — download from https://filezilla-project.org"
 echo "9. Google Docs/Sheets/Slides are Chrome PWAs — install from Chrome (Cast, save, share > Install page as app)"
 echo ""
-echo "Coming from Windows? SETUP-GUIDE.md has a section on the muscle-memory"
+echo "Coming from Windows? WINDOWS-TO-MAC.md covers the muscle-memory"
 echo "differences (shortcuts, Finder, window snapping, force quit)."
 echo ""
-echo "Out of scope on purpose: entertainment apps and one person's AI tooling."
-echo "The repo owner's extras live in personal/ — delete that folder if you cloned this."
+echo "Out of scope on purpose: entertainment apps. This provisions a work machine."
 echo ""
 echo "Done!"

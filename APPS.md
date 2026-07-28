@@ -2,8 +2,6 @@
 
 One-liner reference for everything in [`install.sh`](install.sh). Install commands and config details live in [`SETUP-GUIDE.md`](SETUP-GUIDE.md). Coming from Windows, start with [`WINDOWS-TO-MAC.md`](WINDOWS-TO-MAC.md).
 
-Everything here is generic — nothing tied to one person. The repo owner's own extras are listed in [`personal/README.md`](personal/README.md).
-
 ## Package Manager
 
 - **Homebrew** — macOS package manager for everything below.
@@ -31,7 +29,8 @@ Everything here is generic — nothing tied to one person. The repo owner's own 
 - **PHP + WP-CLI** — PHP runtime plus WordPress command-line tool.
 - **Composer** — PHP dependency manager.
 - **Subversion (`svn`)** — Needed for WordPress.org plugin/theme repos, which are SVN-backed.
-- **Node.js** — JavaScript runtime (default keg, currently 26.x). Older majors (`node@22`, `node@24`) install alongside it for projects whose native modules break on the newest; a `chpwd` hook in [`configs/.zshrc`](configs/.zshrc) switches per directory from `.node-version`/`.nvmrc`.
+- **Node.js** — JavaScript runtime (default keg, currently 26.x).
+- **node@22 / node@24** — Keg-only pins for projects whose native modules break on the newest major. A `chpwd` hook in [`configs/.zshrc`](configs/.zshrc) switches per directory, reading `.node-version`/`.nvmrc`.
 - **Bun** — Fast JavaScript runtime and package manager. Default for all JS work.
 - **pnpm** — Alternative Node package manager, for projects whose lockfile demands it.
 - **Go** — Go toolchain (`go`). Compiler, module manager, test runner in one binary.
@@ -40,9 +39,20 @@ Everything here is generic — nothing tied to one person. The repo owner's own 
 - **ripgrep (`rg`)** — Recursive regex search. Respects `.gitignore`, orders of magnitude faster than `grep -r`.
 - **Docker Desktop** — Containers and Compose, with the `docker` CLI.
 
+## AI CLIs
+
+- **Claude Code (`claude`)** — Anthropic's agentic CLI. Launch via the `claudio` wrapper in [`configs/.zshrc`](configs/.zshrc).
+- **Claude desktop** — Claude app for non-terminal chat.
+- **Codex CLI (`codex`)** — OpenAI's coding CLI. Second-opinion reviewer via the `codex-partner` MCP server.
+- **Gemini CLI (`gemini`)** — Google's coding CLI.
+- **rtk** — Token-optimizing CLI proxy. Wraps `git`/build commands to cut LLM context cost; `rtk gain` reports savings.
+- **uipro (`uipro-cli`)** — Installer for the UI/UX Pro Max skill (styles, palettes, font pairings). The skill itself lives in `~/.claude/skills`.
+- **defuddle (`defuddle-cli`)** — Strips a web page to its article text (same extractor as Obsidian Web Clipper). Required by the `obsidian-skills` plugin; also cheap page reads for agents.
+
 ## Editors
 
 - **VS Code** — Primary editor (`code` opens a file or folder from the shell).
+- **Google Antigravity** — AI-native IDE. Installed, barely used. Only the separate Antigravity IDE build still ships a CLI (`agy-ide`); the plain build's `agy` shim is gone as of 2.4.2.
 - **Obsidian** — Markdown-based note-taking with local files and bidirectional links.
 
 ## WordPress
@@ -120,6 +130,5 @@ Everything here is generic — nothing tied to one person. The repo owner's own 
 
 Deliberately absent:
 
-- **Entertainment** (Steam, GeForce NOW, Synthesia, and the like) — this provisions a work machine.
-- **AI coding tooling** and other one-person workflows — see [`personal/`](personal/) for how to layer those on top without touching the core.
+- **Entertainment** (Steam, GeForce NOW, Synthesia, and the like) — this provisions a work machine, install those by hand.
 - **Project-specific setup** — a Node version pin belongs in that project's `.nvmrc`, which the shell hook reads generically.

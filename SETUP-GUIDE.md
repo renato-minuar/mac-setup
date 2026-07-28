@@ -108,10 +108,12 @@ Highlights:
 
 - Homebrew prefix resolved without shelling out to `brew`, so Intel and Apple Silicon both work
 - Random dark background per Kitty split, so panes stay distinguishable
+- `claudio` — Claude Code launcher with tmux integration (`-t` tmux, `-s` safe mode, `-c` clean stale `c-*` sessions, `-n` custom name)
+- Antigravity IDE `PATH` entry
 - syntax highlighting, autosuggestions, fzf, zoxide, Powerlevel10k
 - Bun install prefix + completions
 - `_node_pin_path` — `chpwd` hook that switches Node major per directory (see § 5)
-- sources `~/.zshrc.local` at the end if present — machine-specific functions, extra `PATH` entries and anything private go there, never in the tracked file
+- sources `~/.zshrc.local` at the end if present, for anything that shouldn't be committed
 
 ---
 
@@ -156,14 +158,10 @@ brew install composer
 ### Node.js and version pins
 
 ```bash
-brew install node
+brew install node node@22 node@24
 ```
 
-Some projects can't run on the newest major, because a dependency ships prebuilt native binaries against an older ABI (`better-sqlite3` is the usual offender). Install the majors your projects actually pin:
-
-```bash
-brew install node@22   # keg-only — not linked into PATH
-```
+`node` is the default keg (currently 26.x). Some projects can't run on the newest major, because a dependency ships prebuilt native binaries against an older ABI (`better-sqlite3` is the usual offender) — `node@22` and `node@24` are keg-only and exist for those.
 
 The `_node_pin_path` hook in [`configs/.zshrc`](configs/.zshrc) picks the major per directory on every `cd`:
 
@@ -233,7 +231,32 @@ brew install --cask docker-desktop
 
 ---
 
-## 6. Editors
+## 6. AI CLIs
+
+Node globals land in the Homebrew node prefix (`/opt/homebrew/lib/node_modules`), Bun globals in `~/.bun`.
+
+```bash
+npm install -g @anthropic-ai/claude-code @google/gemini-cli defuddle-cli uipro-cli
+bun install -g @openai/codex
+brew install rtk
+brew install --cask claude
+```
+
+| Tool | Command | Notes |
+|------|---------|-------|
+| Claude Code | `claude` | Launch via `claudio` (see § 4). `claude --chrome` for browser control. |
+| Claude desktop | — | Cask `claude`, for non-terminal chat. |
+| Codex CLI | `codex` | Second-opinion reviewer, driven by the `codex-partner` MCP server. |
+| Gemini CLI | `gemini` | Google's coding CLI. |
+| rtk | `rtk` | Token-optimizing CLI proxy. `rtk gain` shows savings. |
+| uipro | `uipro` | Installs the UI/UX Pro Max skill; the skill itself lives in `~/.claude/skills`. |
+| defuddle | `defuddle` | Strips a page to article text. Required by the `obsidian-skills` plugin. |
+
+Claude Code's own config (`~/.claude`) is version-controlled separately, not here.
+
+---
+
+## 7. Editors
 
 ### VS Code
 
@@ -245,6 +268,16 @@ brew install --cask visual-studio-code
 
 CLI: `code`
 
+### Google Antigravity
+
+Installed, rarely opened — VS Code covers day-to-day editing.
+
+```bash
+brew install --cask antigravity
+```
+
+CLI: `agy-ide`, from the separate Antigravity IDE build. The plain build dropped its `agy` shim in 2.4.2, leaving `~/.antigravity/antigravity/bin` full of dangling symlinks — don't put it on `PATH`.
+
 ### Obsidian
 
 ```bash
@@ -253,7 +286,7 @@ brew install --cask obsidian
 
 ---
 
-## 7. WordPress
+## 8. WordPress
 
 ### LocalWP
 
@@ -277,7 +310,7 @@ brew install --cask poedit
 
 ---
 
-## 8. Browsers
+## 9. Browsers
 
 ```bash
 brew install --cask google-chrome firefox
@@ -289,7 +322,7 @@ Google Docs/Sheets/Slides are installed as Chrome PWAs (Chrome menu → Cast, sa
 
 ---
 
-## 9. Productivity
+## 10. Productivity
 
 ### Raycast
 
@@ -299,7 +332,7 @@ brew install --cask raycast
 
 Replace Spotlight: System Settings → Keyboard → Keyboard Shortcuts → Spotlight → uncheck Cmd+Space, then set Raycast hotkey to Cmd+Space.
 
-Raycast exports its whole config to a `.rayconfig` file — worth doing once yours is set up, so the next machine is one double-click away.
+Import settings: double-click [`raycast-settings.rayconfig`](raycast-settings.rayconfig) in this repo. Re-export from Raycast whenever the setup changes, so the next machine is one double-click away.
 
 **Window management shortcuts** (Raycast Settings → Extensions → Window Management):
 
@@ -316,7 +349,7 @@ Raycast exports its whole config to a `.rayconfig` file — worth doing once you
 
 ---
 
-## 10. Communication
+## 11. Communication
 
 ```bash
 brew install --cask slack discord telegram signal google-chat whatsapp microsoft-teams
@@ -326,7 +359,7 @@ Google Chat requires Rosetta 2 on Apple Silicon. Teams is only there for client 
 
 ---
 
-## 11. File Sync
+## 12. File Sync
 
 ```bash
 brew install --cask google-drive
@@ -334,7 +367,7 @@ brew install --cask google-drive
 
 ---
 
-## 12. Networking & VPN
+## 13. Networking & VPN
 
 ```bash
 brew install --cask protonvpn tailscale-app
@@ -347,7 +380,7 @@ brew install cloudflared
 
 ---
 
-## 13. Utilities
+## 14. Utilities
 
 ```bash
 brew install btop duti ffmpeg sox poppler woff2
@@ -374,7 +407,7 @@ brew install --cask imageoptim hiddenbar stats karabiner-elements mos numi shott
 
 ---
 
-## 14. Media
+## 15. Media
 
 ```bash
 brew install --cask spotify vlc qbittorrent
@@ -382,7 +415,7 @@ brew install --cask spotify vlc qbittorrent
 
 ---
 
-## 15. Design & Office
+## 16. Design & Office
 
 ### GIMP
 
@@ -404,7 +437,7 @@ brew install --cask libreoffice
 
 ---
 
-## 16. FTP
+## 17. FTP
 
 ### FileZilla
 
@@ -412,7 +445,7 @@ No longer packaged by Homebrew (the cask was dropped). Download from [filezilla-
 
 ---
 
-## 17. Cloud CLI
+## 18. Cloud CLI
 
 ### Google Cloud SDK
 
@@ -422,7 +455,7 @@ brew install --cask gcloud-cli
 
 ---
 
-## 18. SSH Keys
+## 19. SSH Keys
 
 Migrating from another machine — copy `~/.ssh/` and `~/.gitconfig`, then fix permissions:
 
@@ -434,7 +467,7 @@ chmod 644 ~/.ssh/*.pub
 
 ---
 
-## 19. macOS Settings
+## 20. macOS Settings
 
 ### Finder
 
@@ -503,17 +536,17 @@ This installs all packages, links config files, and applies macOS defaults. See 
 
 Not covered by the script: FileZilla (no cask any more) and the Google Docs/Sheets/Slides PWAs.
 
-**Scope.** Everything above is generic — a working Mac for development, nothing tied to one person. Out on purpose: entertainment apps, and one person's AI tooling. The repo owner's extras live in [`personal/`](personal/) behind a separate script; delete that directory if you cloned this repo.
+**Scope.** This provisions a work machine. Entertainment apps stay out — install those by hand.
 
-### Keeping your own machine-specific bits
+### Uncommittable bits
 
-Don't edit `configs/.zshrc` for anything that only makes sense on your machine. It ends with:
+`configs/.zshrc` ends with:
 
 ```zsh
 [[ -r ~/.zshrc.local ]] && source ~/.zshrc.local
 ```
 
-Put private functions, extra `PATH` entries and tokens in `~/.zshrc.local`. The tracked config stays clean and pulls keep working.
+Tokens, one-off experiments and per-machine `PATH` entries go there rather than in the tracked config. Optional — nothing in the setup depends on it.
 
 ---
 
@@ -527,7 +560,7 @@ Put private functions, extra `PATH` entries and tokens in `~/.zshrc.local`. The 
 
 **Per-device scroll direction:** macOS now supports separate Natural Scrolling toggles for Mouse and Trackpad in System Settings.
 
-**Diagnosing key issues:** Karabiner-Elements includes EventViewer to inspect exact keycodes (installed in § 13).
+**Diagnosing key issues:** Karabiner-Elements includes EventViewer to inspect exact keycodes (installed in § 14).
 
 ### Node native module errors
 
